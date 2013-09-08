@@ -1,5 +1,5 @@
 body {
-	background-color: #ababab;
+	background-color: #cccccf;
 }
 
 a {
@@ -8,14 +8,23 @@ a {
 
 
 .item {
-	background-color: #ffffff; 
+	/*background-color: #ffffff; 
 	padding: 6px; 
 	-webkit-border-radius: 6px;
   		-moz-border-radius: 6px;
      		border-radius: 6px;
-     margin: 1px; 
+     margin: 1px; */
+
+  padding: 6px;
+  line-height: 1.428571429;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
 }
 
+/* temp classes for testing */
 .blue { color: #00b5cc;}
 .green { color: #77dd88;}
 .pink { color: #f05588;}

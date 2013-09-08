@@ -1,5 +1,6 @@
 -- Advent schema
 
+-- generic text posts
 DROP TABLE IF EXISTS 'posts';
 CREATE TABLE 'posts' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -10,6 +11,7 @@ CREATE TABLE 'posts' (
 	PRIMARY KEY('id')
 )
 
+-- maybe one day will have need of multiple user accounts
 DROP TABLE IF EXISTS 'users';
 CREATE TABLE 'users' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -19,6 +21,7 @@ CREATE TABLE 'users' (
 	UNIQUE KEY 'username' ('username')
 )
 
+-- photos etc (still haven't thought out schema for this)
 DROP TABLE IF EXISTS 'images';
 CREATE TABLE 'images' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -29,6 +32,7 @@ CREATE TABLE 'images' (
 	PRIMARY KEY('id')
 )
 
+-- products to sell
 DROP TABLE IF EXISTS 'products';
 CREATE TABLE 'products' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -38,6 +42,7 @@ CREATE TABLE 'products' (
 	PRIMARY KEY('id')
 )
 
+-- optional features for products. May revise
 DROP TABLE IF EXISTS 'productoptions';
 CREATE TABLE 'productoptions' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -69,9 +74,9 @@ CREATE TABLE 'posttags' (
 	PRIMARY KEY('postid','tagid')
 )
 
-DROP TABLE IF EXISTS 'producttags';
-CREATE TABLE 'producttags' (
-	'productid' int(11) NOT NULL,
+DROP TABLE IF EXISTS 'imagetags';
+CREATE TABLE 'imagetags' (
+	'imageid' int(11) NOT NULL,
 	'tagid' int(11),
-	PRIMARY KEY('productid','tagid')
+	PRIMARY KEY('imageid','tagid')
 )
