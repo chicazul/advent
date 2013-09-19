@@ -52,6 +52,16 @@ CREATE TABLE 'productoptions' (
 	PRIMARY KEY('id')
 )
 
+-- types for product options
+DROP TABLE IF EXISTS 'producttypes';
+CREATE TABLE 'producttypes' (
+	'id' int(11) NOT NULL AUTO_INCREMENT,
+	'productid' int(11) NOT NULL,
+	'type' varchar(50) NOT NULL,
+	PRIMARY KEY('id')
+)
+
+-- normalised tag table
 DROP TABLE IF EXISTS 'tags';
 CREATE TABLE 'tags' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
@@ -60,6 +70,7 @@ CREATE TABLE 'tags' (
 	UNIQUE KEY 'tag' ('tagname')
 )
 
+-- tags for products
 DROP TABLE IF EXISTS 'producttags';
 CREATE TABLE 'producttags' (
 	'productid' int(11) NOT NULL,
@@ -67,6 +78,7 @@ CREATE TABLE 'producttags' (
 	PRIMARY KEY('productid','tagid')
 )
 
+-- tags for text posts
 DROP TABLE IF EXISTS 'posttags';
 CREATE TABLE 'posttags' (
 	'postid' int(11) NOT NULL,
@@ -74,6 +86,7 @@ CREATE TABLE 'posttags' (
 	PRIMARY KEY('postid','tagid')
 )
 
+-- tags for images
 DROP TABLE IF EXISTS 'imagetags';
 CREATE TABLE 'imagetags' (
 	'imageid' int(11) NOT NULL,
