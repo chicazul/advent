@@ -41,6 +41,7 @@ DROP TABLE IF EXISTS 'products';
 CREATE TABLE 'products' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
 	'productname' varchar(100) NOT NULL,
+	'slug' varchar(128) NOT	NULL,
 	'description' text NOT NULL,
 	'price' decimal(19,4),
 	PRIMARY KEY('id')

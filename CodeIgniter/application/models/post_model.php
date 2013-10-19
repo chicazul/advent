@@ -29,7 +29,7 @@ class Post_model extends CI_Model {
 		$data = array(
 			'title' => $this->input->post('title'),
 			'slug' => $slug,
-			'date_updated' => 
+			'date_updated' => time();
 			'blurb' => $this->input->post('blurb'),
 			'content' => $this->input->post('text')
 		);
