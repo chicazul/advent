@@ -9,7 +9,8 @@ CREATE TABLE 'posts' (
 	'author' int(11) NOT NULL,
 	'datecreated' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	'datesaved' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-	'contents' text NOT NULL,
+	'blurb' varchar(256) NOT NULL,
+	'content' text NOT NULL,
 	PRIMARY KEY('id'),
 	KEY 'slug' ('slug')
 );
