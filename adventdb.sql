@@ -4,12 +4,15 @@
 DROP TABLE IF EXISTS 'posts';
 CREATE TABLE 'posts' (
 	'id' int(11) NOT NULL AUTO_INCREMENT,
+	'title' varchar(128) NOT NULL,
+	'slug' varchar(128) NOT	NULL,
 	'author' int(11) NOT NULL,
 	'datecreated' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	'datesaved' timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	'contents' text NOT NULL,
-	PRIMARY KEY('id')
-)
+	PRIMARY KEY('id'),
+	KEY 'slug' ('slug')
+);
 
 -- maybe one day will have need of multiple user accounts
 DROP TABLE IF EXISTS 'users';
@@ -19,7 +22,7 @@ CREATE TABLE 'users' (
 	'displayname' varchar(100) NOT NULL,
 	PRIMARY KEY('id'),
 	UNIQUE KEY 'username' ('username')
-)
+);
 
 -- photos etc (still haven't thought out schema for this)
 DROP TABLE IF EXISTS 'images';
@@ -30,7 +33,7 @@ CREATE TABLE 'images' (
 	'image' varchar(250) NOT NULL DEFAULT '',
 	'thumbnail' varchar(250) DEFAULT '',
 	PRIMARY KEY('id')
-)
+);
 
 -- products to sell
 DROP TABLE IF EXISTS 'products';
@@ -40,7 +43,7 @@ CREATE TABLE 'products' (
 	'description' text NOT NULL,
 	'price' decimal(19,4),
 	PRIMARY KEY('id')
-)
+);
 
 -- optional features for products. May revise
 DROP TABLE IF EXISTS 'productoptions';
@@ -50,7 +53,7 @@ CREATE TABLE 'productoptions' (
 	'type' varchar(50) NOT NULL,
 	'surcharge' decimal(19,4),
 	PRIMARY KEY('id')
-)
+);
 
 -- types for product options
 DROP TABLE IF EXISTS 'producttypes';
@@ -59,7 +62,7 @@ CREATE TABLE 'producttypes' (
 	'productid' int(11) NOT NULL,
 	'type' varchar(50) NOT NULL,
 	PRIMARY KEY('id')
-)
+);
 
 -- normalised tag table
 DROP TABLE IF EXISTS 'tags';
@@ -68,7 +71,7 @@ CREATE TABLE 'tags' (
 	'tagname' varchar(50),
 	PRIMARY KEY('id'),
 	UNIQUE KEY 'tag' ('tagname')
-)
+);
 
 -- tags for products
 DROP TABLE IF EXISTS 'producttags';
@@ -76,7 +79,7 @@ CREATE TABLE 'producttags' (
 	'productid' int(11) NOT NULL,
 	'tagid' int(11),
 	PRIMARY KEY('productid','tagid')
-)
+);
 
 -- tags for text posts
 DROP TABLE IF EXISTS 'posttags';
@@ -84,7 +87,7 @@ CREATE TABLE 'posttags' (
 	'postid' int(11) NOT NULL,
 	'tagid' int(11),
 	PRIMARY KEY('postid','tagid')
-)
+);
 
 -- tags for images
 DROP TABLE IF EXISTS 'imagetags';
@@ -92,4 +95,4 @@ CREATE TABLE 'imagetags' (
 	'imageid' int(11) NOT NULL,
 	'tagid' int(11),
 	PRIMARY KEY('imageid','tagid')
-)
+);
