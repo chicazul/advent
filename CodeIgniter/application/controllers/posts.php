@@ -1,12 +1,14 @@
 <?php
 class Posts extends CI_Controller {
-	public function __construct() {
+	public function __construct() 
+	{
 		parent::__construct();
 		$this->load->model('post_model');
 	}
 
 	// display all posts
-	public funtion index() {
+	public funtion index() 
+	{
 		$data['posts'] = $this->post_model->get_news();
 		$data['title'] = 'History';
 
@@ -16,10 +18,12 @@ class Posts extends CI_Controller {
 	}
 
 	// display a single post
-	public function view($slug) {
+	public function view($slug) 
+	{
 		$data['post_item'] = $this->post_model->get_post($slug);
 
-		if(empty($data['post_item'])) {
+		if(empty($data['post_item'])) 
+		{
 			show_404();
 		}
 
@@ -31,7 +35,8 @@ class Posts extends CI_Controller {
 	}
 
 	// create a new post
-	public function create() {
+	public function create() 
+	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 
@@ -41,11 +46,13 @@ class Posts extends CI_Controller {
 		$this->form_validation->set_rules('content', 'content', 'required');
 		$this->form_validation->set_rules('blurb', 'blurb', 'required');
 
-		if($this->form_validation->run() === FALSE) {
+		if($this->form_validation->run() === FALSE) 
+		{
 			$this->load->view('templates/header', $data);
 			$this->load->view('posts/create', $data);
 			$this->load->view('templates/footer');
-		} else {
+		} else 
+		{
 			$this->post_model->set_post();
 			$this->load->view('posts/success');
 		}

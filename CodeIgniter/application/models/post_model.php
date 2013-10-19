@@ -1,13 +1,16 @@
 <?php
 class Post_model extends CI_Model {
 	
-	public function __construct() {
+	public function __construct() 
+	{
 		$this->load->database();
 	}
 
 	// load all posts from db
-	public function get_posts($slug = FALSE) {
-		if($slug === FALSE) {
+	public function get_posts($slug = FALSE) 
+	{
+		if($slug === FALSE) 
+		{
 			$query = $this->db->get('posts');
 			return $query->result_array();
 		}
@@ -17,7 +20,8 @@ class Post_model extends CI_Model {
 	}
 
 	// save a single post to database
-	public function set_post() {
+	public function set_post() 
+	{
 		$this->load->helper('url');
 
 		$slug = url_title($this->input->post('title'), 'dash', TRUE);
@@ -25,11 +29,12 @@ class Post_model extends CI_Model {
 		$data = array(
 			'title' => $this->input->post('title'),
 			'slug' => $slug,
+			'date_updated' => 
 			'blurb' => $this->input->post('blurb'),
 			'content' => $this->input->post('text')
 		);
 
-		return $this->db->insert('posts', $data)
+		return $this->db->insert('posts', $data);
 	}
 }
 ?>
