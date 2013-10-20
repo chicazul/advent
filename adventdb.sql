@@ -44,6 +44,7 @@ CREATE TABLE 'products' (
 	'slug' varchar(128) NOT	NULL,
 	'description' text NOT NULL,
 	'price' decimal(19,4),
+	'thumbnailid' int(11),
 	PRIMARY KEY('id')
 );
 
@@ -66,6 +67,15 @@ CREATE TABLE 'producttypes' (
 	PRIMARY KEY('id')
 );
 
+
+-- tags for products
+DROP TABLE IF EXISTS 'productimages';
+CREATE TABLE 'productimages' (
+	'productid' int(11) NOT NULL,
+	'imageid' int(11) NOT NULL,
+	PRIMARY KEY('productid','imageid')
+);
+
 -- normalised tag table
 DROP TABLE IF EXISTS 'tags';
 CREATE TABLE 'tags' (
@@ -79,7 +89,7 @@ CREATE TABLE 'tags' (
 DROP TABLE IF EXISTS 'producttags';
 CREATE TABLE 'producttags' (
 	'productid' int(11) NOT NULL,
-	'tagid' int(11),
+	'tagid' int(11) NOT NULL,
 	PRIMARY KEY('productid','tagid')
 );
 
@@ -87,7 +97,7 @@ CREATE TABLE 'producttags' (
 DROP TABLE IF EXISTS 'posttags';
 CREATE TABLE 'posttags' (
 	'postid' int(11) NOT NULL,
-	'tagid' int(11),
+	'tagid' int(11) NOT NULL,
 	PRIMARY KEY('postid','tagid')
 );
 
@@ -95,6 +105,6 @@ CREATE TABLE 'posttags' (
 DROP TABLE IF EXISTS 'imagetags';
 CREATE TABLE 'imagetags' (
 	'imageid' int(11) NOT NULL,
-	'tagid' int(11),
+	'tagid' int(11) NOT NULL,
 	PRIMARY KEY('imageid','tagid')
 );

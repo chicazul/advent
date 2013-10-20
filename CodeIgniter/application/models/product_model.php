@@ -30,7 +30,8 @@ class Product_model extends CI_Model {
 			'productname' => $this->input->product('productname'),
 			'slug' => $slug,
 			'price' => $this->input->product('price'),
-			'description' => $this->input->product('description')
+			'description' => $this->input->product('description'),
+			'thumbsrc' => $this->input->product('thumbsrc')
 		);
 
 		return $this->db->insert('products', $data);
