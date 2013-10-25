@@ -7,9 +7,9 @@ class Posts extends CI_Controller {
 	}
 
 	// display all posts
-	public funtion index() 
+	public function index() 
 	{
-		$data['posts'] = $this->post_model->get_news();
+		$data['posts'] = $this->post_model->get_posts();
 		$data['title'] = 'History';
 
 		$this->load->view('templates/header', $data);
@@ -20,7 +20,7 @@ class Posts extends CI_Controller {
 	// display a single post
 	public function view($slug) 
 	{
-		$data['post_item'] = $this->post_model->get_post($slug);
+		$data['post_item'] = $this->post_model->get_posts($slug);
 
 		if(empty($data['post_item'])) 
 		{

@@ -1,11 +1,11 @@
 <?php
-echo '<h2>' . $product_item['productname'] . '</h2>';
-echo $product_item['description'];
+echo '<h2>' . $product->productname . '</h2>';
+echo $product->description;
 ?>
 <!-- form example -->
 <form action="https://chicazul.foxycart.com/cart" method="post" accept-charset="utf-8">
-<input type="hidden" name="name" value="<?php echo $product_item['productname'] ?>" />
-<input type="hidden" name="price" value="<?php echo $product_item['price'] ?>" />
+<input type="hidden" name="name" value="<?php echo $product->productname ?>" />
+<input type="hidden" name="price" value="<?php echo $product->price ?>" />
 <label class="label_left">Size</label>
 <select name="size">
     <option value="small">Small</option>

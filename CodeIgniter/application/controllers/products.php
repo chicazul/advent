@@ -3,15 +3,18 @@ class Products extends CI_Controller {
 	public function __construct() 
 	{
 		parent::__construct();
-		$this->load->model('product_model');
+		//$this->load->model('product_model');
 	}
 
 	// display all products
-	public funtion index() 
+	public function index() 
 	{
-		$data['products'] = $this->product_model->get_news();
-		$data['title'] = 'History';
-
+		$products = new Product();
+		$products->get();
+		$data = array(
+					'title' => 'Store',
+					'products' => $products
+			);
 		$this->load->view('templates/header', $data);
 		$this->load->view('products/index', $data);
 		$this->load->view('templates/footer');
@@ -20,14 +23,16 @@ class Products extends CI_Controller {
 	// display a single product
 	public function view($slug) 
 	{
-		$data['product_item'] = $this->product_model->get_product($slug);
+		$product = new Product();
+		$product->where('slug', $slug);
 
-		if(empty($data['product_item'])) 
+		if(empty($product)) 
 		{
 			show_404();
 		}
 
-		$data['title'] = $data['product_item']['title'];
+		$data['title'] = $product->productname;
+		$data['product'] = $product;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('products/view', $data);

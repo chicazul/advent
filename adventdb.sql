@@ -10,7 +10,7 @@ DROP TABLE IF EXISTS producttypes;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS posts;
-DROP TABLE IF EXISTS users;
+-- DROP TABLE IF EXISTS users;
 
 -- maybe one day will have need of multiple user accounts
 CREATE TABLE users (

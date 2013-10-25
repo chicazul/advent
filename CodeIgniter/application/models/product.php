@@ -1,4 +1,10 @@
 <?php
+
+class Product extends DataMapper {
+	public $table = 'products';
+	//public $has_many = array('producttype', 'producttag');
+}
+/*
 class Product_model extends CI_Model {
 	
 	public function __construct() 
@@ -9,6 +15,7 @@ class Product_model extends CI_Model {
 	// load all products from db
 	public function get_products($slug = FALSE) 
 	{
+		$p = new Product();
 		if($slug === FALSE) 
 		{
 			$query = $this->db->get('products');
@@ -36,5 +43,6 @@ class Product_model extends CI_Model {
 
 		return $this->db->insert('products', $data);
 	}
-}
+}*/
+
 ?>
