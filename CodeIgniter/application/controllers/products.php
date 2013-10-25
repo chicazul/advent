@@ -25,6 +25,7 @@ class Products extends CI_Controller {
 	{
 		$product = new Product();
 		$product->where('slug', $slug);
+		$product->get();
 
 		if(empty($product)) 
 		{

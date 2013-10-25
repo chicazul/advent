@@ -2,7 +2,7 @@
 
 class Product extends DataMapper {
 	public $table = 'products';
-	//public $has_many = array('producttype', 'producttag');
+	public $has_many = array('producttype', 'producttag');
 }
 /*
 class Product_model extends CI_Model {
