@@ -1,5 +1,23 @@
 </div>
-This is a footer
+
+<!-- Shopping Cart -->
+  <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="CartLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title">Cart</h4>
+        </div>
+        <div class="modal-body">
+          <iframe id="cartFrame" src="" width="100%" height="400px" seamless></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+<!-- Scripts -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://localhost/advent/js/bootstrap.js"></script>
 <!-- FoxyCart files -->
@@ -20,36 +38,34 @@ jQuery(document).ready(function()
 	      href = 'https://'+storedomain+'/cart?'+jQuery(e).serialize();
 	    }
 	    if (href.match("cart=(checkout|updateinfo)") || href.match("redirect=")) {
-	      return true;
+			return true;
 	    } else if (href.match("cart=view")) {
 	    	// view cart
 			$("#cartFrame").attr("src", href);
 			$('#cart').modal('show');
 			return false;
 	    } else {
-	    	// Add notification that product is being added here.
+	    	// Add item to cart
 	    	showalert('Adding to cart...', 'alert-warning');
 
 		    $.getJSON(href + '&output=json&callback=?', function(data)
 		    {
 		        // Automatically update JSON and minicart helper objects
 		        fcc.cart_update();
-		 
-		      	// Add notification that the product has successfully been added here.
-		 
-		      	showalert('Item has been added to cart.', 'alert-success');
+		      	showalert(e.elements['name'].value + ' has been added to cart.', 'alert-success');
 		    });
 		    return false;
 	    }
 
 	});
 
+	// When cart closed, update JSON and minicart helper objects
 	$('#cart').on('hidden.bs.modal', function () 
 	{
 		fcc.cart_update();
 	})
 
-
+	// Display a temporary alert
 	function showalert(message, alerttype, timeout) {
 	  	//default timout to 5 seconds
 		timeout = timeout || 5000;

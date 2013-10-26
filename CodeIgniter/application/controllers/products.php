@@ -24,8 +24,11 @@ class Products extends CI_Controller {
 	public function view($slug) 
 	{
 		$product = new Product();
-		$product->where('slug', $slug);
-		$product->get();
+		$product->where('slug', $slug)->get();
+		$product->attribute->get();
+		foreach($product->attribute as $a)
+			$a->option->get();
+
 
 		if(empty($product)) 
 		{

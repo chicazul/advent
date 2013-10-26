@@ -13,12 +13,10 @@
 					<li><a href="/advent/CodeIgniter/store/">STORE</a></li>
 					<li><a href="#">GALLERY</a></li>
 					<li><a href="#">ABOUT</a></li>
-					<li><a href="#">I<?php echo $title; ?></a></li>
-					<li>
-		<a href="https://chicazul.foxycart.com/cart?cart=view" id="fc_minicart">
-	<span id="fc_quantity">0</span>
-	<span id="fc_singular"> item </span>
-	<span id="fc_plural"> items </span> in cart
-</a></li>
+					<li><a href="https://chicazul.foxycart.com/cart?cart=view" id="fc_minicart">
+						<span id="fc_quantity">0</span>
+						<span id="fc_singular"> item </span>
+						<span id="fc_plural"> items </span> in cart
+						</a></li>
 				</ul>
 			</div>

@@ -1,12 +1,15 @@
 -- Advent schema, optimised for MySQL
 
-DROP TABLE IF EXISTS imagetags;
-DROP TABLE IF EXISTS posttags;
-DROP TABLE IF EXISTS producttags;
+DROP TABLE IF EXISTS images_tags;
+DROP TABLE IF EXISTS posts_tags;
+DROP TABLE IF EXISTS products_tags;
+DROP TABLE IF EXISTS products_images;
+DROP TABLE IF EXISTS productattributes_attributeoptions;
+DROP TABLE IF EXISTS products_productattributes;
+DROP TABLE IF EXISTS posts_users;
 DROP TABLE IF EXISTS tags;
-DROP TABLE IF EXISTS productimages;
-DROP TABLE IF EXISTS productoptions;
-DROP TABLE IF EXISTS producttypes;
+DROP TABLE IF EXISTS attributeoptions;
+DROP TABLE IF EXISTS productattributes;
 DROP TABLE IF EXISTS products;
 DROP TABLE IF EXISTS images;
 DROP TABLE IF EXISTS posts;
@@ -33,10 +36,7 @@ CREATE TABLE posts (
 	blurb varchar(256) NOT NULL,
 	content text NOT NULL,
 	PRIMARY KEY (id),
-	KEY slug (slug),
-	FOREIGN KEY (author)
-		REFERENCES users(id)
-		ON DELETE RESTRICT
+	KEY slug (slug)
 );
 
 -- photos etc (still havent thought out schema for this)
@@ -57,52 +57,26 @@ CREATE TABLE products (
 	slug varchar(128) NOT NULL,
 	description text NOT NULL,
 	price decimal(19,4),
-	thumbnailid int(11),
-	PRIMARY KEY (id),
-	FOREIGN KEY (thumbnailid)
-		REFERENCES images(id)
-		ON DELETE SET NULL
-		ON UPDATE CASCADE
+	PRIMARY KEY (id)
 );
 
--- types for product options
-CREATE TABLE producttypes (
+-- Optional product attributes
+CREATE TABLE productattributes (
 	id int(11) NOT NULL AUTO_INCREMENT,
-	productid int(11) NOT NULL,
-	type varchar(50) NOT NULL,
+	attributename varchar(50) NOT NULL,
 	PRIMARY KEY (id),
-	INDEX (type),
-	FOREIGN KEY (productid)
-		REFERENCES products(id)
-		ON DELETE CASCADE
+	INDEX (attributename)
 );
 
--- optional features for products. May revise
-CREATE TABLE productoptions (
+-- options for product attributes.
+CREATE TABLE attributeoptions (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	optionname varchar(50) NOT NULL,
-	type varchar(50) NOT NULL,
 	surcharge decimal(19,4),
-	PRIMARY KEY (id),
-	FOREIGN KEY (type)
-		REFERENCES producttypes(type)
-		ON DELETE CASCADE
+	PRIMARY KEY (id)
 );
 
--- tags for products
-CREATE TABLE productimages (
-	productid int(11) NOT NULL,
-	imageid int(11) NOT NULL,
-	PRIMARY KEY (productid,imageid),
-	FOREIGN KEY (productid)
-		REFERENCES products(id)
-		ON DELETE CASCADE,
-	FOREIGN KEY (imageid)
-		REFERENCES images(id)
-		ON DELETE CASCADE
-);
-
--- normalised tag table
+-- Tags
 CREATE TABLE tags (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	tagname varchar(50),
@@ -110,41 +84,94 @@ CREATE TABLE tags (
 	UNIQUE KEY tag (tagname)
 );
 
--- tags for products
-CREATE TABLE producttags (
-	productid int(11) NOT NULL,
-	tagid int(11) NOT NULL,
-	PRIMARY KEY (productid,tagid),
-	FOREIGN KEY (productid)
-		REFERENCES products(id)
-		ON DELETE CASCADE,
-	FOREIGN KEY (tagid)
-		REFERENCES tags(id)
-		ON DELETE CASCADE
-);
-
--- tags for text posts
-CREATE TABLE posttags (
-	postid int(11) NOT NULL,
-	tagid int(11) NOT NULL,
-	PRIMARY KEY (postid,tagid),
-	FOREIGN KEY (postid)
+-- Join table - Posts can have Users (authors)
+CREATE TABLE posts_users (
+	post_id int(11) NOT NULL,
+	user_id int(11) NOT NULL,
+	PRIMARY KEY (post_id,user_id),
+	FOREIGN KEY (post_id)
 		REFERENCES posts(id)
 		ON DELETE CASCADE,
-	FOREIGN KEY (tagid)
+	FOREIGN KEY (user_id)
+		REFERENCES users(id)
+		ON DELETE CASCADE
+);
+
+-- Join table - Products can have many images
+CREATE TABLE products_images (
+	product_id int(11) NOT NULL,
+	image_id int(11) NOT NULL,
+	PRIMARY KEY (product_id,image_id),
+	FOREIGN KEY (product_id)
+		REFERENCES products(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (image_id)
+		REFERENCES images(id)
+		ON DELETE CASCADE
+);
+
+-- Join table - Products can have many product attributes
+CREATE TABLE products_productattributes (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	product_id int(11) NOT NULL,
+	productattribute_id int(11) NOT NULL,
+	PRIMARY KEY (id),
+	FOREIGN KEY (product_id)
+		REFERENCES products(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (productattribute_id)
+		REFERENCES productattributes(id)
+		ON DELETE CASCADE
+);
+
+-- Join table - Product attributes can have many options
+CREATE TABLE productattributes_attributeoptions (
+	product_productattribute_id int(11) NOT NULL,
+	attributeoption_id int(11) NOT NULL,
+	PRIMARY KEY (product_productattribute_id,attributeoption_id),
+	FOREIGN KEY (product_productattribute_id)
+		REFERENCES products_productattributes(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (attributeoption_id)
+		REFERENCES attributeoptions(id)
+		ON DELETE CASCADE
+);
+
+-- Join table - tags for products
+CREATE TABLE products_tags (
+	product_id int(11) NOT NULL,
+	tag_id int(11) NOT NULL,
+	PRIMARY KEY (product_id,tag_id),
+	FOREIGN KEY (product_id)
+		REFERENCES products(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (tag_id)
 		REFERENCES tags(id)
 		ON DELETE CASCADE
 );
 
--- tags for images
-CREATE TABLE imagetags (
-	imageid int(11) NOT NULL,
-	tagid int(11) NOT NULL,
-	PRIMARY KEY (imageid,tagid),
-	FOREIGN KEY (imageid)
+-- Join table - tags for text posts
+CREATE TABLE posts_tags (
+	post_id int(11) NOT NULL,
+	tag_id int(11) NOT NULL,
+	PRIMARY KEY (post_id,tag_id),
+	FOREIGN KEY (post_id)
+		REFERENCES posts(id)
+		ON DELETE CASCADE,
+	FOREIGN KEY (tag_id)
+		REFERENCES tags(id)
+		ON DELETE CASCADE
+);
+
+-- Join table - tags for images
+CREATE TABLE images_tags (
+	image_id int(11) NOT NULL,
+	tag_id int(11) NOT NULL,
+	PRIMARY KEY (image_id,tag_id),
+	FOREIGN KEY (image_id)
 		REFERENCES images(id)
 		ON DELETE CASCADE,
-	FOREIGN KEY (tagid)
+	FOREIGN KEY (tag_id)
 		REFERENCES tags(id)
 		ON DELETE CASCADE
 );
