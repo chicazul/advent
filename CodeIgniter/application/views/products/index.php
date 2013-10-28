@@ -1,14 +1,10 @@
+<div class="row">
 <?php 
-// 
+
 $itemsperrow = 4;
-$newrow = $itemsperrow;
-foreach ($products as $product_item): 
-	if($newrow % $itemsperrow == 0)
-	{	
-		echo '<div class="row">';
-	}
-?>
-<div class="col-lg-3 col-sm-4 col-6 thumbnail">
+$newrow = 1;
+foreach ($products as $product_item): ?>
+<div class="col-lg-3 col-sm-3 thumbnail">
 	<h2 class="green"><?php echo $product_item->productname; ?></h2>
 	<img src="<?php echo $product_item->thumbnailsrc; ?>" />
 	<p><?php echo $product_item->description; ?></p>
@@ -18,7 +14,9 @@ foreach ($products as $product_item):
 
 	if($newrow % $itemsperrow == 0)
 	{
-		echo '</div>';
+			echo '</div>';
+			echo '<div class="row">';
 		$newrow = 1;
 	}
 endforeach ?>
+</div>

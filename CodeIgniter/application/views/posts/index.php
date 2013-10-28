@@ -1,6 +1,6 @@
 <?php 
 // 
-$itemsperrow = 4;
+$itemsperrow = 3;
 $newrow = $itemsperrow;
 foreach ($posts as $post_item): 
 	if($newrow % $itemsperrow == 0)
@@ -8,7 +8,7 @@ foreach ($posts as $post_item):
 		echo '<div class="row">';
 	}
 ?>
-<div class="col-lg-3 col-sm-4 col-6 thumbnail">
+<div class="col-lg-4 col-sm-4 thumbnail">
 	<h2 class="blue"><?php echo $post_item->title; ?></h2>
 	<p><?php echo $post_item->blurb; ?></p>
 	<p><a href="<?php echo $post_item->slug; ?>">View</a></p>

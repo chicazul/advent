@@ -7,6 +7,26 @@ class Product extends DataMapper {
 							'attribute' => array('class' => 'ProductAttribute') , 
 							'producttag'
 							);
+
+	function get_products($slug = FALSE)
+	{
+		if($slug == FALSE)
+		{
+			$this->get();
+		}
+		else
+		{
+			$result = $this->where('slug', $slug)->get();
+
+			if(!empty($result->all))
+			{
+				$this->attribute->get();
+				foreach($this->attribute as $a)
+					$a->option->get();
+			}
+		}
+
+	}
 }
 class ProductAttribute extends DataMapper {
 	public $table = 'productattributes';

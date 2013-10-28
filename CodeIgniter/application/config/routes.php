@@ -38,16 +38,13 @@
 |
 */
 
+$route['default_controller'] = "posts";
+$route['404_override'] = 'errors/error_404';
 $route['store'] = 'products';
 $route['store/(:any)'] = 'products/view/$1';
-$route['posts/create'] = 'posts/create';
 $route['posts/(:any)'] = 'posts/view/$1';
-$route['posts'] = 'posts';
-$route['default_controller'] = "pages/view";
-$route['pages/(:any)'] = 'pages/view/$1';
-$route['404_override'] = '';
-$route['(:any)'] = 'pages/view/$1';
-
+$route['posts/create'] = 'posts/create';
+//$route['login'] = 'login';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

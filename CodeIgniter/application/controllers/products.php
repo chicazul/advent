@@ -10,7 +10,7 @@ class Products extends CI_Controller {
 	public function index() 
 	{
 		$products = new Product();
-		$products->get();
+		$products->get_products();
 		$data = array(
 					'title' => 'Store',
 					'products' => $products
@@ -24,13 +24,9 @@ class Products extends CI_Controller {
 	public function view($slug) 
 	{
 		$product = new Product();
-		$product->where('slug', $slug)->get();
-		$product->attribute->get();
-		foreach($product->attribute as $a)
-			$a->option->get();
+		$product->get_products($slug);
 
-
-		if(empty($product)) 
+		if(empty($product->all)) 
 		{
 			show_404();
 		}
@@ -48,8 +44,11 @@ class Products extends CI_Controller {
 	{
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('login_manager');
 
+		$product = new Product();
 		$data['title'] = 'Create a product';
+		$data['product'] = $product;
 
 		$this->form_validation->set_rules('productname', 'productname', 'required');
 		$this->form_validation->set_rules('description', 'description', 'required');

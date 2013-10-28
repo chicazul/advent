@@ -13,7 +13,7 @@
 				echo '<h3 class="blue">Options</h3>';
 			}
 			foreach ($product->attribute as $attribute) : ?>
-				<div class="form-group col-lg-4 col-md-6">
+				<div class="form-group col-lg-4 col-md-4 col-sm-4">
 					<label for="<?php echo $attribute->attributename ?>"><?php echo $attribute->attributename ?></label>
 					<select class="form-control" name="<?php echo $attribute->attributename ?>">
 

@@ -3,17 +3,25 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('products/create') ?>
-	<label for="productname">Name</label>
-	<input type="input" name="productname" /><br />
+	<div class="form-group">
+		<input type="text" class="form-control" name="productname" id="productname" placeholder="Product Name" value="<?php echo $product->productname ?>">
+	</div>
 
-	<label for="price">Price</label>
-	<input type="input" name="price" /><br />
+	<div class="form-group">
+		<input type="text" class="form-control" name="price" id="price" placeholder="Price" value="<?php echo $product->price ?>">
+	</div>
 
-	<label for="description">Description</label>
-	<textarea name="description"></textarea><br />
 
-	<label for="thumbsrc">Thumbnail link</label>
-	<input type="input" name="thumbsrc"><br />
+	<div class="form-group">
+		<textarea class="form-control" name="description" id="description" placeholder="Description"><?php echo $product->description ?></textarea>
+	</div>
 
-	<input type="submit" name="submit" value="Save" />
+	<div class="input-group">
+		<input type="text" class="form-control" name="attribute" id="attribute" placeholder="Add an attribute" value="">
+	      <span class="input-group-btn">
+	        <button class="btn btn-default" id="add-attribute" type="button">+</button>
+	      </span>
+	</div>
+
+	<input class="btn btn-default" type="submit" name="submit" value="Save" />
 </form>
