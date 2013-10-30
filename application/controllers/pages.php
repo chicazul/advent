@@ -7,7 +7,7 @@ class Pages extends CI_Controller {
 		if(!file_exists('application/views/pages/' . $page . '.php')) 
 		{
 			echo $page;
-			//show_404();
+			show_404();
 		}
 
 		$data['title'] = ucfirst($page); // Capitalise first letter of page name

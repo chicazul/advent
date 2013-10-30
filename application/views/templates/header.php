@@ -4,7 +4,7 @@
 	<title>Adventures of Chicazul - <?php echo $title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://localhost/advent/css/bootstrap.css">
 	<!--<link rel="stylesheet" type="text/css" href="http://localhost/advent/css/bootstrap.min.css">-->
 	<link rel="stylesheet" type="text/css" href="http://localhost/advent/css/styles.css">
 
@@ -22,9 +22,9 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 				    <ul class="nav navbar-nav">
-				      <li><a href="/advent/CodeIgniter/store/">STORE</a></li>
+				      <li><a href="/advent/store/">STORE</a></li>
 				      <li><a href="#">GALLERY</a></li>
-				      <li><a href="#">ABOUT</a></li>
+				      <li><a href="/advent/about/">ABOUT</a></li>
 				    </ul>
 
 					<div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 pull-right">

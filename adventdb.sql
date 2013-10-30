@@ -1,29 +1,27 @@
 -- Advent schema, optimised for MySQL
 
-DROP TABLE IF EXISTS images_tags;
-DROP TABLE IF EXISTS posts_tags;
-DROP TABLE IF EXISTS products_tags;
-DROP TABLE IF EXISTS products_images;
-DROP TABLE IF EXISTS productattributes_attributeoptions;
-DROP TABLE IF EXISTS products_productattributes;
-DROP TABLE IF EXISTS posts_users;
-DROP TABLE IF EXISTS tags;
-DROP TABLE IF EXISTS attributeoptions;
-DROP TABLE IF EXISTS productattributes;
-DROP TABLE IF EXISTS products;
-DROP TABLE IF EXISTS images;
-DROP TABLE IF EXISTS posts;
--- DROP TABLE IF EXISTS users;
-
 -- maybe one day will have need of multiple user accounts
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	username varchar(100) NOT NULL,
 	displayname varchar(100) NOT NULL,
-	saltedpass varchar(256) NOT NULL,
+	password varchar(256) NOT NULL,
+	email varchar(256),
 	PRIMARY KEY (id),
 	UNIQUE KEY username (username)
 );
+
+-- default CI session persistance
+CREATE TABLE IF NOT EXISTS  ci_sessions (
+	session_id varchar(40) DEFAULT '0' NOT NULL,
+	ip_address varchar(45) DEFAULT '0' NOT NULL,
+	user_agent varchar(120) NOT NULL,
+	last_activity int(10) unsigned DEFAULT 0 NOT NULL,
+	user_data text NOT NULL,
+	PRIMARY KEY (session_id),
+	KEY last_activity_idx (last_activity)
+);
+
 
 -- generic text posts
 CREATE TABLE posts (
@@ -36,7 +34,7 @@ CREATE TABLE posts (
 	blurb varchar(256) NOT NULL,
 	content text NOT NULL,
 	PRIMARY KEY (id),
-	KEY slug (slug)
+	UNIQUE KEY slug (slug)
 );
 
 -- photos etc (still havent thought out schema for this)
@@ -57,7 +55,8 @@ CREATE TABLE products (
 	slug varchar(128) NOT NULL,
 	description text NOT NULL,
 	price decimal(19,4),
-	PRIMARY KEY (id)
+	PRIMARY KEY (id),
+	UNIQUE KEY slug (slug)
 );
 
 -- Optional product attributes
@@ -126,11 +125,12 @@ CREATE TABLE products_productattributes (
 
 -- Join table - Product attributes can have many options
 CREATE TABLE productattributes_attributeoptions (
-	product_productattribute_id int(11) NOT NULL,
+	id int(11) NOT NULL AUTO_INCREMENT,
+	productattribute_id int(11) NOT NULL,
 	attributeoption_id int(11) NOT NULL,
-	PRIMARY KEY (product_productattribute_id,attributeoption_id),
-	FOREIGN KEY (product_productattribute_id)
-		REFERENCES products_productattributes(id)
+	PRIMARY KEY (id),
+	FOREIGN KEY (productattribute_id)
+		REFERENCES productattributes(id)
 		ON DELETE CASCADE,
 	FOREIGN KEY (attributeoption_id)
 		REFERENCES attributeoptions(id)

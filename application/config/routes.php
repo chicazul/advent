@@ -44,7 +44,8 @@ $route['store'] = 'products';
 $route['store/(:any)'] = 'products/view/$1';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts/create'] = 'posts/create';
-//$route['login'] = 'login';
+$route['login'] = 'login';
+$route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

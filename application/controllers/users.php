@@ -100,7 +100,7 @@ class Users extends CI_Controller {
 		if($id > 0)
 		{
 			$title = 'Edit User';
-			$url = '/users/save';
+			$url = 'users/save';
 		} else
 		{
 			$title = 'Add User';
