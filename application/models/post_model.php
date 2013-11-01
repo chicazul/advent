@@ -1,8 +1,19 @@
 <?php
 class Post extends DataMapper {
 	
+	function get_posts($slug = FALSE)
+	{
+		if($slug === FALSE) 
+		{
+			$query = $this->get();
+			return $query->all();
+		}
+
+		$query = $this->get_where('slug' => $slug)->get();
+		return $query->all();
+	}
 }
-class Post_model extends CI_Model {
+/*class Post_model extends CI_Model {
 	
 	public function __construct() 
 	{
@@ -39,5 +50,5 @@ class Post_model extends CI_Model {
 
 		return $this->db->insert('posts', $data);
 	}
-}
+}*/
 ?>

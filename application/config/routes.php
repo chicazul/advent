@@ -41,10 +41,13 @@
 $route['default_controller'] = "posts";
 $route['404_override'] = 'errors/error_404';
 $route['store'] = 'products';
+$route['products/create'] = 'products/create';
 $route['store/(:any)'] = 'products/view/$1';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts/create'] = 'posts/create';
 $route['login'] = 'login';
+$route['users'] = 'users';
+$route['users/edit/(:any)'] = 'users/edit/$1';
 $route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */

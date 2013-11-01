@@ -1,4 +1,8 @@
-<?php
-echo '<h2>' . $post_item['title'] . '</h2>';
-echo $post_item['content'];
-?>
+<div class="row">
+	<div class="item">
+		<h2><?php echo $post->title ?></h2>
+		<div name="content">
+		<?php echo $post->content; ?>
+		</div>
+	</div>
+</div>

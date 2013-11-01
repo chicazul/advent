@@ -1,5 +1,7 @@
 </div>
-
+<!--<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
+  ...
+</nav>
 <!-- Shopping Cart -->
   <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="CartLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -63,7 +65,24 @@ jQuery(document).ready(function()
 	$('#cart').on('hidden.bs.modal', function () 
 	{
 		fcc.cart_update();
-	})
+	});
+
+	// Product options can change product price. Make sure to update it
+	$('.option').change(function() {
+		var totalPrice = parseInt($("#price").val());
+		$("select option:selected").each(function(index) {
+			//halfway done - figure out how to get name of select object WHY does select have to be such a common word
+			alert($(this).name()+'-'+$(this).val());
+			totalPrice += parseInt($(this).val());
+		});
+		$('#totalprice').text(totalPrice);
+	});
+
+	// Submit the total price, including custom options
+	$('#submit-product').click(function()
+	{
+		$('#price').val($('#totalprice').text());
+	});
 
 	// Display a temporary alert
 	function showalert(message, alerttype, timeout) {

@@ -3,17 +3,24 @@
 <?php echo validation_errors(); ?>
 
 <?php echo form_open('posts/create') ?>
-	<label for="title">Title</label>
-	<input type="input" name="title" /><br />
 
-	<label for="author">Author</label>
-	<input type="input" name="author" /><br />
+	<div class="form-group">
+		<input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo $post->title ?>">
+	</div>
 
-	<label for="blurb">Blurb</label>
-	<textarea name="blurb"></textarea><br />
+	<div class="form-group">
+		<input type="text" class="form-control" name="author" id="author" placeholder="Author" value="<?php echo $post->author ?>">
+	</div>
 
-	<label for="content">Content</label>
-	<textarea name="content"></textarea><br />
+	<div class="form-group">
+		<label for="blurb">Blurb</label>
+		<textarea class="form-control" name="blurb" id="blurb"><?php echo $post->blurb ?></textarea>
+	</div>
+
+	<div class="form-group">
+		<label for="content">Content</label>
+		<textarea class="form-control" name="content" id="content"><?php echo $post->content ?></textarea>
+	</div>
 
 	<input type="submit" name="submit" value="Save" />
 </form>

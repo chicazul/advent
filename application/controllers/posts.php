@@ -3,13 +3,15 @@ class Posts extends CI_Controller {
 	public function __construct() 
 	{
 		parent::__construct();
-		$this->load->model('post_model');
 	}
 
 	// display all posts
 	public function index() 
 	{
-		$data['posts'] = $this->post_model->get_posts();
+		$posts = new Post();
+		$posts->get_posts();
+
+		$data['posts'] = $posts;
 		$data['title'] = 'History';
 
 		$this->load->view('templates/header', $data);
@@ -20,14 +22,16 @@ class Posts extends CI_Controller {
 	// display a single post
 	public function view($slug) 
 	{
-		$data['post_item'] = $this->post_model->get_posts($slug);
+		$post = new Post();
+		$post->get_posts($slug);
 
-		if(empty($data['post_item'])) 
+		if(empty($post->all))
 		{
 			show_404();
 		}
 
-		$data['title'] = $data['post_item']['title'];
+		$data['title'] = $post->title;
+		$data['post'] = $post;
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('posts/view', $data);
@@ -36,12 +40,14 @@ class Posts extends CI_Controller {
 
 	// create a new post
 	public function create() 
-	{
+	{	
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		//$this->load->library('login_manager');
+		$this->load->library('login_manager');
+		$post = new Post();
 
 		$data['title'] = 'Create a post';
+		$data['post'] = $post;
 
 		$this->form_validation->set_rules('title', 'title', 'required');
 		$this->form_validation->set_rules('content', 'content', 'required');
@@ -54,9 +60,21 @@ class Posts extends CI_Controller {
 			$this->load->view('templates/footer');
 		} else 
 		{
-			$this->post_model->set_post();
-			$this->load->view('posts/success');
+			$post->set_post($_POST);
+
+			$this->load->view('posts/success', array('post' => $post));
 		}
+	}
+
+	public function save()
+	{
+		//echo 'saving!' . serialize($_POST);
+		$this->edit('save');
+	}
+
+	public function edit($slug = -1)
+	{
+
 	}
 
 }

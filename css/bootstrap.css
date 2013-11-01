@@ -413,7 +413,7 @@ h6,
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 500;
   line-height: 1.1;
-  color: inherit;
+  color: #00b5cc;
 }
 h1 small,
 h2 small,
@@ -3404,7 +3404,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #eeeeef;
 }
 .nav > li.disabled > a {
   color: #999999;
@@ -3419,7 +3419,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .nav .open > a,
 .nav .open > a:hover,
 .nav .open > a:focus {
-  background-color: #eeeeee;
+  background-color: #eeeeef;
   border-color: #09a5b4;
 }
 .nav .open > a .caret,
@@ -3938,7 +3938,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #f8f8f8;
+  background-color: #f8f8fc;
   border-color: #e7e7e7;
 }
 .navbar-default .navbar-brand {

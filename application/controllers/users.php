@@ -9,6 +9,7 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->library('form_validation');
 		$users = new User();
 		$users->get();
 		$data = array(
@@ -22,6 +23,7 @@ class Users extends CI_Controller {
 
 	public function create()
 	{
+
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$user = new User();

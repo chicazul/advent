@@ -1,5 +1,6 @@
 body {
 	background-color: #cccccf;
+  padding-bottom: 70px;
 }
 
 a {
@@ -19,6 +20,14 @@ a {
   line-height: 1.428571429;
   background-color: #ffffff;
   border: 1px solid #dddddd;
+  border-radius: 6px;
+  -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+}
+
+.content {
+  padding: 0px 10px 10px 10px;
+  background-color: #ffffff;
   border-radius: 6px;
   -webkit-transition: all 0.2s ease-in-out;
           transition: all 0.2s ease-in-out;
