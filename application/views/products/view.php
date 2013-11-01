@@ -26,13 +26,14 @@
 				echo "<div class='form-group'>\n";
 					echo "<label for='{$attribute->attribute->name}'>{$attribute->attribute->name}</label>\n";
 					
+
 					if(count($attribute->option->all) > 0) { 
 						echo "<select class='form-control option' name='{$attribute->attribute->name}'>\n";
-						$optionfields = '';
+						$optionsfields = '';
 						foreach ($attribute->option as $option)
 						{
-					    	echo "<option value='{$option->surcharge},{$option->optionname}'>{$option->optionname}" . (($option->surcharge > 0) ? " + $" . number_format($option->surcharge,0) : "") . "</option>\n";
-					    	$optionsfields .= "<input type='hidden' name='{$attribute->attribute->name}-{$option->optionname}' value='{$option->surcharge}' />\n";
+					    	echo "<option value='{$option->optionname}'>{$option->optionname}" . (($option->surcharge > 0) ? " + $" . number_format($option->surcharge,0) : "") . "</option>\n";
+					    	$optionsfields .= "<input type='hidden' id='". str_replace(' ','', $attribute->attribute->name . '-' .$option->optionname) ."' value='{$option->surcharge}' />\n";
 					    }
 						echo "</select>\n";
 						echo $optionsfields;

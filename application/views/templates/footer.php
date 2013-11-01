@@ -71,9 +71,9 @@ jQuery(document).ready(function()
 	$('.option').change(function() {
 		var totalPrice = parseInt($("#price").val());
 		$("select option:selected").each(function(index) {
-			//halfway done - figure out how to get name of select object WHY does select have to be such a common word
-			alert($(this).name()+'-'+$(this).val());
-			totalPrice += parseInt($(this).val());
+			//this ugly contraption gets the numeric value of the tag with an id equal to:
+			// the select name (minus spaces) -dash- selected option value (minus spaces)
+			totalPrice += parseInt($("#"+$(this).parent().attr('name').replace(/\s+/g,'')+'-'+$(this).val().replace(/\s+/g,'')).val());
 		});
 		$('#totalprice').text(totalPrice);
 	});
