@@ -76,6 +76,7 @@ jQuery(document).ready(function()
 			totalPrice += parseInt($("#"+$(this).parent().attr('name').replace(/\s+/g,'')+'-'+$(this).val().replace(/\s+/g,'')).val());
 		});
 		$('#totalprice').text(totalPrice);
+		$('#subtotal').toggleClass('hidden',(totalPrice <= 0));
 	});
 
 	// Submit the total price, including custom options

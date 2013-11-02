@@ -3,12 +3,13 @@
 		<?php
 		echo '<h2>' . $product->productname . '</h2>';
 
-		if(count($product->image->all) > 0) { ?>
-		<img class="center-block thumbnail" src="/advent/img/<?php echo $product->image->image ?>" alt="<?php echo 'Photo by ' . $product->image->artist . ' - ' . $product->image->description ?>" width="300" />
+		if(count($product->image->all) > 0) 
+		{
+		echo "<img class='center-block thumbnail' src='/advent/img/{$product->image->image}' alt='Photo by {$product->image->artist} - {$product->image->description}' width='300' />\n";
 
-		<?php } //end if ?>
+		echo "<h3>Description</h3>\n";
+		} ?>
 
-		<h3>Description</h3>
 		<div class="content">
 			<?php echo $product->description?>
 		</div>
@@ -39,13 +40,19 @@
 						echo $optionsfields;
 					} else 
 					{
-						echo "<input type='text' name='{$attribute->attribute->name}' class='form-control' placeholder='Enter {$attribute->attribute->name}' />\n";
+						$placeholder = $attribute->attribute->name;
+						if($placeholder == 'Donation amount')
+						{
+							$attribute->attribute->name = 'price';
+						}
+						echo "<input type='text' name='{$attribute->attribute->name}' class='form-control' placeholder='Enter {$placeholder}' />\n";
 					}
 				echo '</div>'. "\n";
 			} ?>
 			<input id="submit-product" type="submit" class="btn pull-right" name="Add to Cart" value="Add to Cart" class="submit" />
+			<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" name="View Cart">View Cart</a>
 		</form>
-		<div id="subtotal">
+		<div id="subtotal" class="<?php echo ($product->price <= 0 ? 'hidden' : '') ?>" >
 			<h2>$<span id="totalprice"><?php echo number_format($product->price,0) ?></span></h2>
 		</div>
 		<div id="alert_placeholder" class="clearfix"></div>
