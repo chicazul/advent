@@ -15,11 +15,60 @@
  
   function customShippingLogic() {
     /* BEGIN CUSTOM SHIPPING LOGIC */
-    addShippingOption(1,17,'', 'Tracked Packet (<10 business days)');
+    addShippingOption(1,17,'', 'Tracked Packet (10 business days)');
     addShippingOption(2,28,'', 'Expedited Parcel (4 business days)')
-    addShippingOption(3,0,'', 'On-board Pickup (February)');
+    addShippingOption(3,0,'', 'On-board JoCo Cruise Crazy (February)');
+    
+    var box8inCost = {1: 17,2: 28,3: 0};
+    var box12inDWCost = {2: 35};
+    var box17inDWCost = {2: 70};
 
+    var cube8in = 0;
+    var cube12inDW = 0;
+    var cube17inDW = 0;
 
+    for (p in fc_json.products) {
+      switch (fc_json.products[p].category) {
+        case "Fez":
+          cube8in += fc_json.products[p].quantity;
+          break;
+        case "Cube17":
+          cube12inDW += fc_json.products[p].quantity;
+          break;
+        case "Cube22":
+          cube17inDW += fc_json.products[p].quantity;
+          break;
+      }
+    }
+
+    // 4 fezzes can fit in a box. Approximately.
+    cube8in = Math.ceil(cube8in / 4);
+    
+    var shippingTotal = 0;
+    var optionAvailable = false;
+    var optionUnavailable = false;
+
+    // Shipping options are not anywhere I can loop them so let's try this backwards way
+    for(var i=1;i<4;i++)
+    {
+      if((cube8in * box8inCost[i]) > 0 || (cube12inDW * box12inDWCost[i]) > 0 || (cube17inDW * box17inDWCost[i]) > 0)
+      {
+        optionAvailable = true;
+      }
+      if(box8inCost[i] && box12inDWCost[i] && box17inDWCost[i])
+      {
+        shippingTotal = (cube8in * box8inCost[i]) + (cube12inDW * box12inDWCost[i]) +  (cube17inDW * box17inDWCost[i]);
+        updateShippingOptionCost(i, shippingTotal);
+      } else
+      {
+        removeShippingOption(i);
+        if(optionAvailable)
+        {
+          removeShippingOption(4);
+          addShippingOption(4,0,'','Other options available, request quote');
+        }
+      }
+    }
     /* END CUSTOM SHIPPING LOGIC */
   }
  

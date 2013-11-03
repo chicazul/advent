@@ -33,6 +33,10 @@ a {
           transition: all 0.2s ease-in-out;
 }
 
+.pull-down {
+  vertical-align: text-bottom;
+}
+
 /* temp classes for testing */
 .blue { color: #00b5cc;}
 .green { color: #77dd88;}

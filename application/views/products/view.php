@@ -14,14 +14,21 @@
 			<?php echo $product->description?>
 		</div>
 		<!-- form example -->
-		<h3>Options</h3>
+		
+		<div id="subtotal" class="text-center col-lg-6 col-md-6 clearfix <?php echo ($product->price <= 0 ? 'hidden' : '') ?>" >
+			<h2>$<span id="totalprice"><?php echo number_format($product->price,0) ?></span></h2>
+		</div>
+		<?php 
+			if(count($product->productattribute->all) > 0)  
+			{
+				echo "<h3>Options</h3>\n";
+			}
+		?>
 		<form class="col-lg-6 col-md-6" role="form" action="https://chicazul.foxycart.com/cart" method="post" accept-charset="utf-8">
 			<input type="hidden" name="name" value="<?php echo $product->productname ?>" />
 			<input type="hidden" class="price" name="price" id="price" value="<?php echo $product->price ?>" />
+			<input type="hidden" name="category" value="<?php echo $product->shippingcategory ?>" />
 			<?php
-			if($product->attribute) {
-				echo '<h3 class="blue">Options</h3>';
-			}
 			foreach ($product->productattribute as $attribute)
 			{
 				echo "<div class='form-group'>\n";
@@ -49,12 +56,12 @@
 					}
 				echo '</div>'. "\n";
 			} ?>
-			<input id="submit-product" type="submit" class="btn pull-right" name="Add to Cart" value="Add to Cart" class="submit" />
 			<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" name="View Cart">View Cart</a>
+			<input id="submit-product" type="submit" class="btn pull-right" name="Add to Cart" value="Add to Cart" class="submit" />
 		</form>
-		<div id="subtotal" class="<?php echo ($product->price <= 0 ? 'hidden' : '') ?>" >
-			<h2>$<span id="totalprice"><?php echo number_format($product->price,0) ?></span></h2>
-		</div>
-		<div id="alert_placeholder" class="clearfix"></div>
 	</div>
+</div>
+
+<div class="row">
+	<div id="alert_placeholder" class="clearfix"></div>
 </div>
