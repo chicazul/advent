@@ -14,7 +14,7 @@
 			<?php echo $product->description?>
 		</div>
 		<!-- form example -->
-		
+
 		<div id="subtotal" class="text-center col-lg-6 col-md-6 clearfix <?php echo ($product->price <= 0 ? 'hidden' : '') ?>" >
 			<h2>$<span id="totalprice"><?php echo number_format($product->price,0) ?></span></h2>
 		</div>

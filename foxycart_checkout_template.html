@@ -19,13 +19,13 @@
     addShippingOption(2,28,'', 'Expedited Parcel (4 business days)')
     addShippingOption(3,0,'', 'On-board JoCo Cruise Crazy (February)');
     
-    var box8inCost = {1: 17,2: 28,3: 0};
-    var box12inDWCost = {2: 35};
-    var box17inDWCost = {2: 70};
+    var box8inCost = {1: 17,2: 28,3: 0}; // Assuming 1lb
+    var box12inDWCost = {2: 35}; // Assuming 5lbs
+    var box17inDWCost = {2: 70}; // Assuming 12lbs
 
-    var cube8in = 0;
-    var cube12inDW = 0;
-    var cube17inDW = 0;
+    var cube8in = 0; // 8in cube box
+    var cube12inDW = 0; // 12in double-wall cube box
+    var cube17inDW = 0; // 17in double-wall cube box
 
     for (p in fc_json.products) {
       switch (fc_json.products[p].category) {
@@ -45,26 +45,29 @@
     cube8in = Math.ceil(cube8in / 4);
     
     var shippingTotal = 0;
-    var optionAvailable = false;
-    var optionUnavailable = false;
+    var optionAvailable = false; // this option is available for at least one item
+    var optionUnavailable = false; // ...but not all, so we're removing it, suckers
 
     // Shipping options are not anywhere I can loop them so let's try this backwards way
     for(var i=1;i<4;i++)
     {
+      // Check that at least one item on invoice could use this shipping option
       if((cube8in * box8inCost[i]) > 0 || (cube12inDW * box12inDWCost[i]) > 0 || (cube17inDW * box17inDWCost[i]) > 0)
       {
         optionAvailable = true;
       }
-      if(box8inCost[i] && box12inDWCost[i] && box17inDWCost[i])
+      // If all invoice items can use this shipping option, show total. Otherwise, hide this option.
+      if(box8inCost[i] && (cub12inDW ? box12inDWCost[i] : true) && (cube17inDW ? box17inDWCost[i] : true))
       {
         shippingTotal = (cube8in * box8inCost[i]) + (cube12inDW * box12inDWCost[i]) +  (cube17inDW * box17inDWCost[i]);
         updateShippingOptionCost(i, shippingTotal);
       } else
       {
         removeShippingOption(i);
+        // Give options if some invoice items could be shipped cheaper/faster
         if(optionAvailable)
         {
-          removeShippingOption(4);
+          removeShippingOption(4); // Avoid duplicates
           addShippingOption(4,0,'','Other options available, request quote');
         }
       }
