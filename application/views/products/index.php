@@ -9,7 +9,7 @@ foreach ($products as $product): ?>
 
 	<?php if(count($product->image->all) > 0) { ?>
 	<a href="<?php echo $product->slug; ?>">
-	<img class="img-responsive img-rounded center-block" src="/advent/img/<?php echo $product->image->image ?>" alt="<?php echo 'Photo by ' . $product->image->artist . ' - ' . $product->image->description ?>" width="300" />
+	<img class="img-responsive img-rounded center-block" src="<?php echo $product->image->image ?>" alt="<?php echo 'Photo by ' . $product->image->artist . ' - ' . $product->image->description ?>" width="300" />
 	</a>
 	<?php } //end if ?>
 	<a href="<?php echo $product->slug; ?>">

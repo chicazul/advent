@@ -21,7 +21,7 @@
   </div><!-- /.modal -->
 <!-- Scripts -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://localhost/advent/js/bootstrap.js"></script>
+<script src="http://chicazul.com/js/bootstrap.js"></script>
 <!-- FoxyCart files -->
 <script src="//cdn.foxycart.com/chicazul/foxycart.js?ver=2" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">

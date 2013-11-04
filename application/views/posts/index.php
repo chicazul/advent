@@ -18,3 +18,4 @@ foreach ($posts as $post):
 	}
 	$newrow += 1;
 endforeach ?>
+</div>

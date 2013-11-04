@@ -34,6 +34,7 @@ a {
 }
 
 .pull-down {
+  position: relative;
   vertical-align: text-bottom;
 }
 
@@ -44,3 +45,8 @@ a {
 .orange { color: #db7022;}
 
 .bgblue { background-color: #00b5cc;}
+
+.navbar-fixed-bottom {
+  min-height: 30;
+  height: 30;
+}

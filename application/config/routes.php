@@ -42,6 +42,7 @@ $route['default_controller'] = "posts";
 $route['404_override'] = 'errors/error_404';
 $route['store'] = 'products';
 $route['products/create'] = 'products/create';
+$route['store/thankyou'] = 'products/thankyou';
 $route['store/(:any)'] = 'products/view/$1';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts/create'] = 'posts/create';

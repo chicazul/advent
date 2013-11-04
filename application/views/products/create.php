@@ -19,7 +19,7 @@
 	<div class="input-group">
 		<input type="text" class="form-control" name="attribute" id="attribute" placeholder="Add an attribute" value="">
 	      <span class="input-group-btn">
-	        <button class="btn btn-default" id="add-attribute" type="button">+</button>
+	        <button class="btn btn-default" id="product-add-attribute" type="button">+</button>
 	      </span>
 	</div>
 

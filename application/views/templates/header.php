@@ -4,10 +4,10 @@
 	<title>Adventures of Chicazul - <?php echo $title; ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="http://localhost/advent/css/bootstrap.css">
+	<link rel="stylesheet" href="http://chicazul.com/css/bootstrap.css">
 	<!--<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">-->
 	<!--<link rel="stylesheet" type="text/css" href="http://localhost/advent/css/bootstrap.min.css">-->
-	<link rel="stylesheet" type="text/css" href="http://localhost/advent/css/styles.css">
+	<link rel="stylesheet" type="text/css" href="http://chicazul.com/css/styles.css">
 
 	</head>
 	<body>
@@ -24,12 +24,11 @@
 				<div class="collapse navbar-collapse navbar-ex1-collapse">
 				    <ul class="nav navbar-nav">
 				      <li><a href="/advent/store/">STORE</a></li>
-				      <li><a href="#">GALLERY</a></li>
 				      <li><a href="/advent/about/">ABOUT</a></li>
 				    </ul>
 
 					<div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 pull-right">
-						<small>JoCo Cruise Crazy Fundraising Goal</small>
+						<a href="/advent/posts/joco-cruise-crazy-4-fundraiser"><small>JoCo Cruise Crazy Fundraising Goal</small></a>
 						<div class="progress progress-striped">
 							<?php $total = file_exists($_SERVER['DOCUMENT_ROOT'] . '/advent/total.txt') ? file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/advent/total.txt') : "100";?>
 							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $total; ?>" aria-valuemin="0" aria-valuemax="2500" style="width: <?php echo $total / 25; ?>%">

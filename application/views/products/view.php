@@ -5,7 +5,7 @@
 
 		if(count($product->image->all) > 0) 
 		{
-		echo "<img class='center-block thumbnail' src='/advent/img/{$product->image->image}' alt='Photo by {$product->image->artist} - {$product->image->description}' width='300' />\n";
+		echo "<img class='center-block thumbnail' src='{$product->image->image}' alt='Photo by {$product->image->artist} - {$product->image->description}' width='300' />\n";
 
 		echo "<h3>Description</h3>\n";
 		} ?>
@@ -17,6 +17,7 @@
 
 		<div id="subtotal" class="text-center col-lg-6 col-md-6 clearfix <?php echo ($product->price <= 0 ? 'hidden' : '') ?>" >
 			<h2>$<span id="totalprice"><?php echo number_format($product->price,0) ?></span></h2>
+			<h4>Contribution to fund: $<?php echo number_format($product->profit,0) ?></h4>
 		</div>
 		<?php 
 			if(count($product->productattribute->all) > 0)  

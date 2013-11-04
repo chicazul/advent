@@ -38,6 +38,15 @@ class Products extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	public function thankyou()
+	{
+		$data['title'] = 'Thank you!';
+		
+		$this->load->view('templates/header', $data);
+		$this->load->view('products/thankyou', $data);
+		$this->load->view('templates/footer');
+	}
+
 	// create a new product
 	public function create() 
 	{
