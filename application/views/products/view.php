@@ -58,11 +58,12 @@
 				echo '</div>'. "\n";
 			} ?>
 			<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" name="View Cart">View Cart</a>
-			<input id="submit-product" type="submit" class="btn pull-right" name="Add to Cart" value="Add to Cart" class="submit" />
+			<input id="submit-product" type="submit" class="btn btn-primary pull-right clearfix" name="Add to Cart" value="Add to Cart" class="submit" />
 		</form>
+		
+	<div id="alert_placeholder" class="clearfix"></div>
 	</div>
 </div>
 
 <div class="row">
-	<div id="alert_placeholder" class="clearfix"></div>
 </div>

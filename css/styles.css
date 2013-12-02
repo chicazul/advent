@@ -1,5 +1,5 @@
 body {
-	background-color: #cccccf;
+	background-color: #dedfe2;
   padding-bottom: 70px;
 }
 
@@ -7,6 +7,9 @@ a {
 	color: #0088aa;
 }
 
+.navbar-brand {
+  color: #00b5cc;
+}
 
 .item {
 	/*background-color: #ffffff; 

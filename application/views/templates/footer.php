@@ -1,6 +1,6 @@
 </div>
-<!--<nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-  ...
+<nav class="navbar navbar-default navbar-fixed-bottom">
+  <div><small class="pull-right text-muted">No one can hear you when you crouch.</small></div>
 </nav>
 <!-- Shopping Cart -->
   <div class="modal fade" id="cart" tabindex="-1" role="dialog" aria-labelledby="CartLabel" aria-hidden="true">

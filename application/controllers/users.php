@@ -10,6 +10,7 @@ class Users extends CI_Controller {
 	public function index()
 	{
 		$this->load->library('form_validation');
+		$this->load->library('login_manager');
 		$users = new User();
 		$users->get();
 		$data = array(
@@ -26,6 +27,7 @@ class Users extends CI_Controller {
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
+		$this->load->library('login_manager');
 		$user = new User();
 
 		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
@@ -51,6 +53,7 @@ class Users extends CI_Controller {
 	{
 
 		$this->load->helper('form');
+		$this->load->library('login_manager');
 		// Create User Object
 		$user = new User();
 		echo empty($_POST);
