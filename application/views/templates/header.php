@@ -37,6 +37,7 @@
 					</div>
 
 					<a href="https://chicazul.foxycart.com/cart?cart=view" id="fc_minicart" class="pull-right">
+						<span class="glyphicon glyphicon-shopping-cart"></span>
 						<span id="fc_quantity">0</span>
 						<span id="fc_singular"> item </span>
 						<span id="fc_plural"> items </span> in cart
