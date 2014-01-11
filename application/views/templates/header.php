@@ -5,11 +5,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<link rel="stylesheet" href="http://chicazul.com/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="http://chicazul.com/css/styles.css">
 
 	</head>
 	<body>
-			<nav class="navbar navbar-default" role="navigation">
+			<nav class="navbar navbar-default col-lg-offset-3" role="navigation">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
