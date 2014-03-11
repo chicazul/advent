@@ -57,10 +57,9 @@
 					}
 				echo '</div>'. "\n";
 			} ?>
-			<!--<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" name="View Cart">View Cart</a>
+			<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" name="View Cart">View Cart</a>
 			<input id="submit-product" type="submit" class="btn btn-primary pull-right clearfix" name="Add to Cart" value="Add to Cart" class="submit" />
-			-->
-			<div class="alert alert-danger"><strong>Sorry!</strong> The store is temporarily closed until I return from vacation.</div>
+			
 		</form>
 		
 	<div id="alert_placeholder" class="clearfix"></div>
