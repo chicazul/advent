@@ -8,6 +8,7 @@ class Login extends CI_Controller {
 		$this->load->library('login_manager', array('autologin' => FALSE));
 	}
 
+	// FIXME: login redirection doesn't work.
 	function index()
 	{
 		$this->load->helper('form');

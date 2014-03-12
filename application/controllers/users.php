@@ -7,6 +7,14 @@ class Users extends CI_Controller {
 		// require admin access
 	}
 
+	public function logout()
+	{
+		$this->load->library('login_manager');
+		if($this->login_manager->get_user())
+		{
+			$this->login_manager->logout();
+		}
+	}
 	public function index()
 	{
 		$this->load->library('form_validation');
@@ -30,7 +38,7 @@ class Users extends CI_Controller {
 		$this->load->library('login_manager');
 		$user = new User();
 
-		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[12]|is_unique[users.username]');
+		$this->form_validation->set_rules('username', 'Username', 'required|min_length[5]|max_length[25]|is_unique[users.username]');
 		$this->form_validation->set_rules('password', 'Password', 'required|matches[passconf]');
 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required');
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
@@ -39,7 +47,7 @@ class Users extends CI_Controller {
 					'user' => $user
 			);
 		$this->load->view('templates/header', $data);
-		$this->load->view('users/register', $data);
+		$this->load->view('users/edit', $data);
 		$this->load->view('templates/footer');
 
 	}
@@ -69,10 +77,11 @@ class Users extends CI_Controller {
 			// New users start with blank passwords, so they will get an error automatically.
 			if( ! empty($_POST['password']))
 			{
-				$user->from_array($_POST, array('password', 'confirm_password'));
+				// TOFIX: This uses DataMapper to write directly to DB without hashing password. How to do?
+				$user->from_array(array('password'=>create_hash($_POST['password'])), array('password'));
 			}
 			
-			// Load and save the reset of the data at once
+			// Load and save the rest of the data at once
 			// The passwords saved above are already stored.
 			$success = $user->from_array($_POST, array(
 				'displayname',
