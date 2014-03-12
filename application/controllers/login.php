@@ -8,7 +8,6 @@ class Login extends CI_Controller {
 		$this->load->library('login_manager', array('autologin' => FALSE));
 	}
 
-	// FIXME: login redirection doesn't work.
 	function index()
 	{
 		$this->load->helper('form');
@@ -16,7 +15,7 @@ class Login extends CI_Controller {
 		$user = $this->login_manager->get_user();
 		if($user !== FALSE)
 		{
-			// already logged in, redirect
+			// already logged in, redirect <-- wait what does this mean there is no redirect here?
 		}
 
 		$user = new User();
@@ -26,7 +25,6 @@ class Login extends CI_Controller {
 			$user->from_array($_POST, array('username','password'));
 			// call validation of login request
 			$login_redirect = $this->login_manager->process_login($user);
-			echo $login_redirect;
 			if($login_redirect)
 			{
 				if($login_redirect === TRUE)

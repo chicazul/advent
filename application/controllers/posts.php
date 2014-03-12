@@ -62,7 +62,9 @@ class Posts extends CI_Controller {
 		{
 			$post->set_post($_POST);
 
+			$this->load->view('templates/header', $data);
 			$this->load->view('posts/success', array('post' => $post));
+			$this->load->view('templates/footer');
 		}
 	}
 

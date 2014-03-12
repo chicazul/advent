@@ -44,7 +44,7 @@ class Login_Manager {
 		$u = $this->get_user();
 		if($u === FALSE)
 		{
-			$this->session->set_userdata('login_redirect', $this->CI->uri);
+			$this->session->set_userdata('login_redirect', $this->CI->uri->uri_string());
 			redirect('login');
 		}
 		if($required_group > 0)
