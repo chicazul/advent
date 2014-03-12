@@ -24,6 +24,14 @@ class Login_Manager {
 		}
 	}
 	
+	/**
+	* check_login
+	* Validates that user is logged in and has permission to access this page.
+	* If not, redirects to login page or error message.
+	* 
+	* @param integer $required_group Group id required to access this page
+	* @return none
+	*/
 	function check_login($required_group = -1)
 	{
 		// Special auto-setup routine

@@ -53,6 +53,7 @@ class Users extends CI_Controller {
 		$this->load->view('users/login',array('user' => $user));
 		$this->load->view('templates/footer');
 	}
+
 	public function index()
 	{
 		$this->load->library('form_validation');
@@ -68,6 +69,7 @@ class Users extends CI_Controller {
 		$this->load->view('templates/footer');
 	}
 
+	// TOFIX: this function is not used properly. How to restructure?
 	public function create()
 	{
 
@@ -82,7 +84,8 @@ class Users extends CI_Controller {
 		$this->form_validation->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]');
 		$data = array(
 					'title' => 'Log In',
-					'user' => $user
+					'user' => $user,
+					'url' => 'users/save'
 			);
 		$this->load->view('templates/header', $data);
 		$this->load->view('users/edit', $data);
@@ -95,6 +98,7 @@ class Users extends CI_Controller {
 		echo 'saving!' . serialize($_POST);
 		$this->edit('save');
 	}
+
 	public function edit($id = -1)
 	{
 
@@ -102,7 +106,7 @@ class Users extends CI_Controller {
 		$this->load->library('login_manager');
 		// Create User Object
 		$user = new User();
-		echo empty($_POST);
+		//echo empty($_POST);
 		if($id == 'save')
 		{
 			// Try to save the user
@@ -115,7 +119,6 @@ class Users extends CI_Controller {
 			// New users start with blank passwords, so they will get an error automatically.
 			if( ! empty($_POST['password']))
 			{
-				// TOFIX: This uses DataMapper to write directly to DB without hashing password. How to do?
 				$user->from_array(array('password'=>create_hash($_POST['password'])), array('password'));
 			}
 			
@@ -156,7 +159,7 @@ class Users extends CI_Controller {
 		} else
 		{
 			$title = 'Add User';
-			$url = 'users/add';
+			$url = 'users/create';
 		}
 
 		$data = array(
