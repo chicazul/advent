@@ -46,7 +46,8 @@ class Posts extends CI_Controller {
 		$this->load->library('login_manager');
 		$post = new Post();
 
-		$data['title'] = 'Create a post';
+		$data['pagetitle'] = 'Create a post';
+		$data['url'] = 'posts/create';
 		$data['post'] = $post;
 
 		$this->form_validation->set_rules('title', 'title', 'required');
@@ -56,7 +57,7 @@ class Posts extends CI_Controller {
 		if($this->form_validation->run() === FALSE) 
 		{
 			$this->load->view('templates/header', $data);
-			$this->load->view('posts/create', $data);
+			$this->load->view('posts/edit', $data);
 			$this->load->view('templates/footer');
 		} else 
 		{
@@ -74,9 +75,69 @@ class Posts extends CI_Controller {
 		$this->edit('save');
 	}
 
-	public function edit($slug = -1)
+	public function edit($slug = '')
 	{
 
+		$this->load->helper('form');
+		$this->load->library('login_manager');
+		// Create Post Object
+		$post = New Post();
+
+		if($slug == 'save')
+		{
+			// Try to save the post
+			$slug = $this->input->post('slug');
+			$post->get_posts($slug);
+			
+			$post->trans_start();
+			
+			// Load and save the rest of the data at once
+			$success = $post->from_array($_POST, array(
+				'title',
+				'blurb',
+				'content'
+			), TRUE); // TRUE means save immediately
+			
+			$post->trans_complete();
+			// redirect on save
+			if($success)
+			{
+				if($slug)
+				{
+					$this->session->set_flashdata('message', 'The post ' . $post->title . ' was successfully created.');
+				}
+				else
+				{
+					$this->session->set_flashdata('message', 'The post ' . $post->title . ' was successfully updated.');
+				}
+				redirect('posts');
+			}
+		}
+		else
+		{
+			// load an existing post
+			$post->get_posts($slug);
+		}
+		
+
+		if($slug !== '')
+		{
+			$title = 'Edit Post';
+			$url = 'posts/save';
+		} else
+		{
+			$title = 'Create Post';
+			$url = 'posts/create';
+		}
+
+		$data = array(
+					'pagetitle' => $title,
+					'url' => $url,
+					'post' => $post
+			);
+		$this->load->view('templates/header', $data);
+		$this->load->view('posts/edit', $data);
+		$this->load->view('templates/footer');
 	}
 
 }
