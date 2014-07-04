@@ -49,7 +49,7 @@ $route['posts/(:any)'] = 'posts/view/$1';
 $route['posts/create'] = 'posts/create';
 $route['users'] = 'users';
 $route['users/edit/(:any)'] = 'users/edit/$1';
-//$route['(:any)'] = 'pages/view/$1';
+$route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
