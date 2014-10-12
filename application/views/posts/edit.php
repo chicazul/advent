@@ -1,4 +1,4 @@
-<h2><?php echo $pagetitle ?></h2>
+<h2><?php echo $title ?></h2>
 
 <?php echo validation_errors(); ?>
 
@@ -6,10 +6,6 @@
 
 	<div class="form-group">
 		<input type="text" class="form-control" name="title" id="title" placeholder="Title" value="<?php echo $post->title ?>">
-	</div>
-
-	<div class="form-group">
-		<input type="text" class="form-control" name="author" id="author" placeholder="Author" value="<?php echo $post->author ?>">
 	</div>
 
 	<div class="form-group">

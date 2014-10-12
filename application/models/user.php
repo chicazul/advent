@@ -1,5 +1,10 @@
 <?php
 class User extends DataMapper {
+	public $has_many = array(
+		'created_post' => array(
+			'class' => 'post',
+			'other_field' => 'author')
+		);
 
 	/**
 	 * Login
@@ -14,15 +19,13 @@ class User extends DataMapper {
 		// backup username for invalid logins
 		$uname = $this->username;
 		
-		// Create a temporary user object
 		$u = new User();
 
-		// Get this users stored record via their username
+		// Get user's stored record via their username
 		$u->where('username', $uname)->get();
 
 		if(validate_password($this->password, $u->password))
 		{
-			echo "password valid";
 			$this->get();
 		}
 		else
@@ -30,7 +33,6 @@ class User extends DataMapper {
 			$this->clear();
 		}
 		
-		echo $this->password;
 		// If there was no matching record, this user would be completely cleared so their id would be empty.
 		if ($this->exists())
 		{
@@ -65,5 +67,7 @@ class User extends DataMapper {
 			$this->{$field} = create_hash($this->{$field});
 		}
 	}
+
+
 }
 ?>

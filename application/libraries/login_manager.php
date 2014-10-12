@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Datamapper library
  * Simple utility class to handle logins.
  */
 class Login_Manager {
@@ -88,6 +89,7 @@ class Login_Manager {
 				$success = $redirect;
 			}
 		}
+		// return TRUE or FALSE, or URI to redirect to after success
 		return $success;
 	}
 	

@@ -24,7 +24,8 @@ class Users extends CI_Controller {
 		$user = $this->login_manager->get_user();
 		if($user !== FALSE)
 		{
-			// already logged in, redirect <-- wait what does this mean there is no redirect here?
+			// already logged in, redirect
+			redirect($login_redirect);
 		}
 
 		$user = new User();

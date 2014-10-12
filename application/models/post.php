@@ -1,5 +1,10 @@
 <?php
 class Post extends DataMapper {
+	public $has_one = array(
+		'author' => array(
+			'class' => 'user',
+			'other_field' => 'created_post')
+		);
     var $created_field = 'created';
     var $updated_field = 'updated';
 	
@@ -15,18 +20,19 @@ class Post extends DataMapper {
 		return $query->all;
 	}
 
-	public function set_post($data) 
+	public function set_post($data, $new = FALSE) 
 	{
-		$this->load->helper('url');
 
-		$slug = url_title($data['title'], 'dash', TRUE);
-
-		$this->title = $data['title'];
-		//$this->author = // current user somehow but not sure how
-		$this->slug = $slug;
-		$this->blurb = $data['blurb'];
-		$this->content = $data['content'];
-
+		$this->from_array($data, array(
+			'title',
+			'slug',
+			'blurb',
+			'content'
+		));
+		if($new)
+		{
+			return $this->save();
+		}
 		return $this->save();
 	}
 }
