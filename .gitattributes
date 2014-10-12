@@ -1,0 +1,2 @@
+application/config/routes.php merge=ours
+application/config/database.php merge=ours
