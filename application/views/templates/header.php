@@ -24,6 +24,12 @@
 				    <ul class="nav navbar-nav">
 				      <li><a href="/store/">STORE</a></li>
 				      <li><a href="/about/">ABOUT</a></li>
+				      <?php
+				      	if(isset($user))
+				      	{
+				      		echo '<li><a href="/advent/logout">LOG OUT</a></li>';
+				      	}
+				      ?>
 				    </ul>
 
 					<div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 pull-right">

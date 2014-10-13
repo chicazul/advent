@@ -18,5 +18,17 @@
 		<textarea class="form-control" name="content" id="content"><?php echo $post->content ?></textarea>
 	</div>
 
-	<input type="submit" name="submit" value="Save" />
+	<?php foreach ($groups as $g): 
+			$checked = "";
+
+			if($g->id == $post->group->id)
+			{
+				$checked = " checked";
+			}
+	?>
+	<label class="radio-inline">
+  		<?php echo '<input type="radio" name="group" id="' . $g->name . '" value="'. $g->id .'"'. $checked .'>' . $g->name ?>
+	</label>
+	<?php endforeach ?>
+	<input class="btn btn-primary" type="submit" name="submit" value="Save" />
 </form>

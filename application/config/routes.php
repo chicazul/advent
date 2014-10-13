@@ -41,6 +41,7 @@
 $route['default_controller'] = "posts";
 $route['404_override'] = 'errors/error_404';
 $route['login'] = 'users/login';
+$route['logout'] = 'users/logout';
 $route['store'] = 'products';
 $route['products/create'] = 'products/create';
 $route['store/thankyou'] = 'products/thankyou';

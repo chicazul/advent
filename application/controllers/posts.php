@@ -8,17 +8,24 @@ class Posts extends CI_Controller {
 	// display all posts
 	public function index($style = 'index') 
 	{
+		$group = 1;
+
 		if($style == 'list')
 		{
-			$this->load->library('login_manager');
+			$loginparam = array('required_group' => 2);
+			$this->load->library('login_manager',$loginparam);
+			$group = $this->login_manager->get_user()->group->id;
 		}
 
 		$posts = new Post();
-		$posts->get_posts();
+		$posts->get_posts(FALSE,$group);
 
 		$data['posts'] = $posts;
 		$data['title'] = 'History';
-
+		if(isset($this->login_manager))
+		{
+			$data['user'] = $this->login_manager->get_user();
+		}
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('posts/' . $style, $data);
@@ -52,7 +59,8 @@ class Posts extends CI_Controller {
 
 	public function save($new = FALSE)
 	{
-		$this->load->library('login_manager');
+		$loginparam = array('required_group' => 2);
+		$this->load->library('login_manager',$loginparam);
 		$this->load->helper('url');
 		// Create Post Object
 		$post = New Post();
@@ -87,12 +95,15 @@ class Posts extends CI_Controller {
 
 		$this->load->helper('form');
 		$this->load->library('form_validation');
-		$this->load->library('login_manager');
+		$loginparam = array('required_group' => 2);
+		$this->load->library('login_manager',$loginparam);
 		// Create Post Object
 		$post = New Post();
 
 		$post->get_posts($slug);
 		
+		$groups = New Group();
+		$groups->get_groups();
 
 		if($slug !== '')
 		{
@@ -107,7 +118,8 @@ class Posts extends CI_Controller {
 		$data = array(
 					'title' => $title,
 					'url' => $url,
-					'post' => $post
+					'post' => $post,
+					'groups' => $groups
 			);
 
 		$this->form_validation->set_rules('title', 'title', 'required');
@@ -121,7 +133,8 @@ class Posts extends CI_Controller {
 
 	public function delete($slug)
 	{
-		$this->load->library('login_manager');
+		$loginparam = array('required_group' => 2);
+		$this->load->library('login_manager',$loginparam);
 
 		$post = new Post();
 		$post->get_posts($slug);

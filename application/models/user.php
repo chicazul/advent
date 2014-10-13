@@ -5,6 +5,7 @@ class User extends DataMapper {
 			'class' => 'post',
 			'other_field' => 'author')
 		);
+	public $has_one = array('group');
 
 	/**
 	 * Login
@@ -37,6 +38,7 @@ class User extends DataMapper {
 		if ($this->exists())
 		{
 			// Login succeeded
+			$this->group->get();
 			return TRUE;
 		}
 		else
