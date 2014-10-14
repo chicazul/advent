@@ -128,7 +128,6 @@ class Login_Manager {
 		}
 		else
 		{
-			echo $this->logged_in_user->group_id;
 			return $this->logged_in_user;
 		}
 	}
