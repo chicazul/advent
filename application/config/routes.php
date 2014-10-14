@@ -55,6 +55,8 @@ $route['posts/save/(:any)'] = 'posts/save';
 $route['posts/(:any)'] = 'posts/view/$1';
 $route['users'] = 'users';
 $route['users/(:any)'] = 'users/$1';
+$route['images'] = 'images';
+$route['images/(:any)'] = 'images/$1';
 //$route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */

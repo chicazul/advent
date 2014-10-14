@@ -36,7 +36,7 @@ class Post extends DataMapper {
 		return $result->all;
 	}
 
-	public function set_post($data, $new = FALSE) 
+	public function set_post($data) 
 	{
 
 		$this->from_array($data, array(
@@ -49,10 +49,6 @@ class Post extends DataMapper {
 		$a = $data['author'];
 		$g = New Group();
 		$g->where('id',$data['group'])->get();
-		if($new)
-		{
-			return $this->save();
-		}
 		return $this->save(array('author' => $a,'group' => $g));
 	}
 }

@@ -75,7 +75,7 @@ class Posts extends CI_Controller {
 		$_POST['slug'] = $slug;
 		$_POST['author'] = $this->login_manager->get_user();
 
-		$success = $post->set_post($_POST, $new);
+		$success = $post->set_post($_POST);
 		
 		// redirect on save
 		if($success)
@@ -92,7 +92,6 @@ class Posts extends CI_Controller {
 
 	public function edit($slug = '')
 	{
-
 		$this->load->helper('form');
 		$this->load->library('form_validation');
 		$loginparam = array('required_group' => 2);
