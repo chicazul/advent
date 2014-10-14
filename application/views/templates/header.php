@@ -33,7 +33,7 @@
 				    </ul>
 
 					<div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 pull-right">
-						<a href="/posts/joco-cruise-crazy-4-fundraiser"><small>JoCo Cruise Crazy Fundraising Goal</small></a>
+						<a href="/posts/joco-cruise-crazy-5-fundraiser"><small>JoCo Cruise Crazy Fundraising Goal</small></a>
 						<div class="progress progress-striped">
 							<?php $total = file_exists($_SERVER['DOCUMENT_ROOT'] . '/total.txt') ? file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/total.txt') : "100";?>
 							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $total; ?>" aria-valuemin="0" aria-valuemax="2500" style="width: <?php echo $total / 25; ?>%">
