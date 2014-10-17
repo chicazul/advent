@@ -36,7 +36,7 @@
 						<a href="/posts/joco-cruise-crazy-5-fundraiser"><small>JoCo Cruise Crazy Fundraising Goal</small></a>
 						<div class="progress progress-striped">
 							<?php $total = file_exists($_SERVER['DOCUMENT_ROOT'] . '/total.txt') ? file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/total.txt') : "100";?>
-							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $total; ?>" aria-valuemin="0" aria-valuemax="2500" style="width: <?php echo $total / 25; ?>%">
+							<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="<?php echo $total; ?>" aria-valuemin="0" aria-valuemax="1000" style="width: <?php echo $total / 10; ?>%">
 								<span class="sr-only">$?php echo $total; ?></span>
 							</div>
 						</div>
