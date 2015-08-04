@@ -1,6 +1,7 @@
 <?php
 
 /**
+ * Datamapper library
  * Simple utility class to handle logins.
  */
 class Login_Manager {
@@ -24,6 +25,14 @@ class Login_Manager {
 		}
 	}
 	
+	/**
+	* check_login
+	* Validates that user is logged in and has permission to access this page.
+	* If not, redirects to login page or error message.
+	* 
+	* @param integer $required_group Group id required to access this page
+	* @return none
+	*/
 	function check_login($required_group = -1)
 	{
 		// Special auto-setup routine
@@ -80,13 +89,20 @@ class Login_Manager {
 				$success = $redirect;
 			}
 		}
+		// return TRUE or FALSE, or URI to redirect to after success
 		return $success;
 	}
 	
 	function logout()
 	{
+		$redirect = $this->session->userdata('login_redirect');
 		$this->session->sess_destroy();
 		$this->logged_in_user = NULL;
+		if(empty($redirect))
+		{
+			$redirect = 'posts';
+		}
+		redirect($redirect);
 	}
 	
 	function get_user()
@@ -103,6 +119,7 @@ class Login_Manager {
 				$u = new User();
 				$u->get_by_id($id);
 				if($u->exists()) {
+					$u->group->get();
 					$this->logged_in_user = $u;
 					return $this->logged_in_user;
 				}

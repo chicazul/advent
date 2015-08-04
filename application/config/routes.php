@@ -38,17 +38,25 @@
 |
 */
 
-$route['default_controller'] = "posts";
+$route['default_controller'] = 'posts';
 $route['404_override'] = 'errors/error_404';
-$route['login'] = 'login';
+$route['login'] = 'users/login';
+$route['logout'] = 'users/logout';
 $route['store'] = 'products';
 $route['products/create'] = 'products/create';
 $route['store/thankyou'] = 'products/thankyou';
 $route['store/(:any)'] = 'products/view/$1';
-$route['posts/(:any)'] = 'posts/view/$1';
+$route['posts/edit/(:any)'] = 'posts/edit/$1';
 $route['posts/create'] = 'posts/create';
+$route['posts/list'] = 'posts/index/list';
+$route['posts/delete/(:any)'] = 'posts/delete/$1';
+$route['posts/save'] = 'posts/save';
+$route['posts/save/(:any)'] = 'posts/save';
+$route['posts/(:any)'] = 'posts/view/$1';
 $route['users'] = 'users';
-$route['users/edit/(:any)'] = 'users/edit/$1';
+$route['users/(:any)'] = 'users/$1';
+$route['images'] = 'images';
+$route['images/(:any)'] = 'images/$1';
 $route['(:any)'] = 'pages/view/$1';
 
 /* End of file routes.php */

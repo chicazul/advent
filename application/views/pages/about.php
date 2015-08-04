@@ -1,8 +1,9 @@
 <div class="row">
-	<div class="item">
-		<h2 class="blue"><?php echo $title ?></h2>
+	<div class="content">
+		<h2><?php echo $title ?></h2>
 		<p>I like to make things. Clothing, furniture, websites. You know, things.</p>
 
+		<h3>Contact</h3>
 		<address>
 			<strong>Sara Chicazul</strong><br />
 			Twitter: <a href="https://twitter.com/chicazul">@chicazul</a>

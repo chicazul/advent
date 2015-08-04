@@ -1,23 +1,27 @@
+<div class="container main-content">
 <div class="row">
-<?php 
+<?php
 
 $itemsperrow = 4;
 $newrow = 1;
-foreach ($products as $product): ?>
-<div class="col-lg-3 col-md-3 col-sm-6 col-xs-6 thumbnail">
-
-
-	<?php if(count($product->image->all) > 0) { ?>
-	<a href="<?php echo $product->slug; ?>">
-	<img class="img-responsive img-rounded center-block" src="<?php echo $product->image->image ?>" alt="<?php echo 'Photo by ' . $product->image->artist . ' - ' . $product->image->description ?>" width="300" />
-	</a>
-	<?php } //end if ?>
-	<a href="<?php echo $product->slug; ?>">
-		<h2><?php echo $product->productname; ?></h2>
-	</a>
-	<!--<p><?php echo $product->description; ?></p>-->
-
-	<a class="pull-right" href="<?php echo $product->slug; ?>"><strong>$<?php echo number_format($product->price,0) ?></strong> and up</a>
+$storeURI = '';
+if (substr($_SERVER['REQUEST_URI'], -1) != '/') {
+	$storeURI = 'store/';
+}
+foreach ($products as $product): 
+	$link = $storeURI . $product->slug; ?>
+<div class="col-lg-3 col-md-4 col-sm-6 col-xs-6 item">
+	<div class="item-content clearfix">
+		<?php if(count($product->image->all) > 0) { ?>
+		<a href="<?php echo $link; ?>">
+		<img class="img-responsive img-rounded center-block" src="<?php echo $product->image->image ?>" alt="<?php echo 'Photo by ' . $product->image->artist . ' - ' . $product->image->description ?>" width="300" />
+		</a>
+		<?php } //end if ?>
+		
+		<h2><a href="<?php echo $link; ?>"><?php echo $product->productname; ?></a></h2>
+		
+		<a class="pull-right" href="<?php echo $link; ?>"><strong>$<?php echo number_format($product->price,0) ?></strong> and up</a>
+	</div>
 </div>
 <?php 
 	if($newrow % $itemsperrow == 0)
@@ -27,5 +31,5 @@ foreach ($products as $product): ?>
 	}
 	$newrow += 1;
 endforeach ?>
-</a>
+</div>
 </div>
