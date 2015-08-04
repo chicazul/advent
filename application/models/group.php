@@ -1,17 +1,16 @@
 <?php
-class Group extends DataMapper {
-	public $has_many = array('post','user');
+class Group  {
 
 	function get_groups($id = 0)
 	{
 		if($id === 0) 
 		{
-			$query = $this->get();
-			return $query->all;
+			$result = $this->get('groups');
+			return $result->all;
 		}
 
-		$query = $this->get_where(array('id' => $id));
-		return $query->all;
+		$result = $this->get_where('groups', array('level' => $id));
+		return $result->all;
 	}
 
 }

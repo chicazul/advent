@@ -13,8 +13,8 @@ class Posts extends CI_Controller {
 		if($style == 'list')
 		{
 			$loginparam = array('required_group' => 2);
-			$this->load->library('login_manager',$loginparam);
-			$group = $this->login_manager->get_user()->group->id;
+			//$this->load->library('login_manager',$loginparam);
+			//$group = $this->login_manager->get_user()->group->id;
 		}
 
 		$posts = new Post();
@@ -81,7 +81,7 @@ class Posts extends CI_Controller {
 		if($success)
 		{
 			$verb = $new ? 'created' : 'updated';
-			$this->session->set_flashdata('message', 'The post <em>' . $post->title . '</em> was successfully ' . $verb);
+			//$this->session->set_flashdata('message', 'The post <em>' . $post->title . '</em> was successfully ' . $verb);
 			redirect('posts/list');
 		}
 		else
@@ -154,7 +154,7 @@ class Posts extends CI_Controller {
 		// redirect when delete completed
 		if($success)
 		{
-			$this->session->set_flashdata('message', 'The post <em>' . $title . '</em> was successfully deleted.');
+			//$this->session->set_flashdata('message', 'The post <em>' . $title . '</em> was successfully deleted.');
 			redirect('posts/list');
 		}
 	}

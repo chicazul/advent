@@ -1,19 +1,20 @@
 <?php
 
-class Image extends DataMapper {
-	public $has_many = array('product' => array('class' => 'product',
-												'join_table' => 'products_images')
-	);
+class Image extends CI_Model {
+	public $artist;
+	public $source;
+	public $description;
+	public $image;
 
 	public function get_images($id = -1)
 	{
 		if($id < 0)
 		{
-			$result = $this->get();
+			$result = $this->db->get('images');
 		}
 		else
 		{
-			$result = $this->where('id', $id)->get();
+			$result = $this->db->get_where('images', 'id', $id)->get();
 		}
 		return $result->all;
 	}

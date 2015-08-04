@@ -11,20 +11,19 @@ CREATE TABLE IF NOT EXISTS users (
 	UNIQUE KEY username (username)
 );
 
--- default CI session persistance
-CREATE TABLE IF NOT EXISTS  ci_sessions (
-	session_id varchar(40) DEFAULT '0' NOT NULL,
-	ip_address varchar(45) DEFAULT '0' NOT NULL,
-	user_agent varchar(120) NOT NULL,
-	last_activity int(10) unsigned DEFAULT 0 NOT NULL,
-	user_data text NOT NULL,
-	PRIMARY KEY (session_id),
-	KEY last_activity_idx (last_activity)
+-- default CI session persistence
+CREATE TABLE IF NOT EXISTS ci_sessions (
+	id varchar(40) NOT NULL,
+	ip_address varchar(45) NOT NULL,
+	timestamp int(10) unsigned DEFAULT 0 NOT NULL,
+	data blob NOT NULL,
+	PRIMARY KEY (id),
+	KEY ci_sessions_timestamp (timestamp)
 );
 
 
 -- generic text posts
-CREATE TABLE posts (
+CREATE TABLE IF NOT EXISTS posts (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	title varchar(128) NOT NULL,
 	slug varchar(128) NOT NULL,
@@ -37,8 +36,8 @@ CREATE TABLE posts (
 	UNIQUE KEY slug (slug)
 );
 
--- photos etc (still havent thought out schema for this)
-CREATE TABLE images (
+-- photos etc (still haven't thought out schema for this)
+CREATE TABLE IF NOT EXISTS images (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	artist varchar(128) NOT NULL,
 	source varchar(128) NOT NULL,
@@ -49,7 +48,7 @@ CREATE TABLE images (
 );
 
 -- products to sell
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	productname varchar(100) NOT NULL,
 	slug varchar(128) NOT NULL,
@@ -60,7 +59,7 @@ CREATE TABLE products (
 );
 
 -- Optional product attributes
-CREATE TABLE productattributes (
+CREATE TABLE IF NOT EXISTS productattributes (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	attributename varchar(50) NOT NULL,
 	PRIMARY KEY (id),
@@ -68,7 +67,7 @@ CREATE TABLE productattributes (
 );
 
 -- options for product attributes.
-CREATE TABLE attributeoptions (
+CREATE TABLE IF NOT EXISTS attributeoptions (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	optionname varchar(50) NOT NULL,
 	surcharge decimal(19,4),
@@ -76,15 +75,24 @@ CREATE TABLE attributeoptions (
 );
 
 -- Tags
-CREATE TABLE tags (
+CREATE TABLE IF NOT EXISTS tags (
 	id int(11) NOT NULL AUTO_INCREMENT,
-	tagname varchar(50),
+	tagname varchar(100),
 	PRIMARY KEY(id),
 	UNIQUE KEY tag (tagname)
 );
 
+-- Groups
+CREATE TABLE IF NOT EXISTS groups (
+	id int(11) NOT NULL AUTO_INCREMENT,
+	name varchar(50) NOT NULL,
+	description text,
+	level int(11) NOT NULL,
+	PRIMARY KEY(id)
+);
+
 -- Join table - Posts can have Users (authors)
-CREATE TABLE posts_users (
+CREATE TABLE IF NOT EXISTS posts_users (
 	post_id int(11) NOT NULL,
 	user_id int(11) NOT NULL,
 	PRIMARY KEY (post_id,user_id),
@@ -97,7 +105,7 @@ CREATE TABLE posts_users (
 );
 
 -- Join table - Products can have many images
-CREATE TABLE products_images (
+CREATE TABLE IF NOT EXISTS products_images (
 	product_id int(11) NOT NULL,
 	image_id int(11) NOT NULL,
 	PRIMARY KEY (product_id,image_id),
@@ -110,7 +118,7 @@ CREATE TABLE products_images (
 );
 
 -- Join table - Products can have many product attributes
-CREATE TABLE products_productattributes (
+CREATE TABLE IF NOT EXISTS products_productattributes (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	product_id int(11) NOT NULL,
 	productattribute_id int(11) NOT NULL,
@@ -124,7 +132,7 @@ CREATE TABLE products_productattributes (
 );
 
 -- Join table - Product attributes can have many options
-CREATE TABLE productattributes_attributeoptions (
+CREATE TABLE IF NOT EXISTS productattributes_attributeoptions (
 	id int(11) NOT NULL AUTO_INCREMENT,
 	productattribute_id int(11) NOT NULL,
 	attributeoption_id int(11) NOT NULL,
@@ -138,7 +146,7 @@ CREATE TABLE productattributes_attributeoptions (
 );
 
 -- Join table - tags for products
-CREATE TABLE products_tags (
+CREATE TABLE IF NOT EXISTS products_tags (
 	product_id int(11) NOT NULL,
 	tag_id int(11) NOT NULL,
 	PRIMARY KEY (product_id,tag_id),
@@ -151,7 +159,7 @@ CREATE TABLE products_tags (
 );
 
 -- Join table - tags for text posts
-CREATE TABLE posts_tags (
+CREATE TABLE IF NOT EXISTS posts_tags (
 	post_id int(11) NOT NULL,
 	tag_id int(11) NOT NULL,
 	PRIMARY KEY (post_id,tag_id),
@@ -164,7 +172,7 @@ CREATE TABLE posts_tags (
 );
 
 -- Join table - tags for images
-CREATE TABLE images_tags (
+CREATE TABLE IF NOT EXISTS images_tags (
 	image_id int(11) NOT NULL,
 	tag_id int(11) NOT NULL,
 	PRIMARY KEY (image_id,tag_id),

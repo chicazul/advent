@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
 	<head>
-	<title>Adventures of Chicazul - <?php echo $title; ?></title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Adventures of Chicazul - <?php echo $title; ?></title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="stylesheet" href="http://chicazul.com/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="http://chicazul.com/css/styles.css">
+		<link rel="stylesheet" href="http://chicazul.com/css/bootstrap.css">
+		<link rel="stylesheet" type="text/css" href="http://chicazul.com/css/styles.css">
+		<link rel="stylesheet" href="//cdn.foxycart.com/static/scripts/colorbox/1.3.23/style1_fc/colorbox.css?ver=1" type="text/css" media="screen" charset="utf-8" />
 
 	</head>
 	<body>
-			<nav class="navbar navbar-default col-lg-offset-3" role="navigation">
+			<nav class="navbar navbar-default" role="navigation">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">

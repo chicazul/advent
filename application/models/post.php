@@ -1,31 +1,27 @@
 <?php
-class Post extends DataMapper {
-	public $has_one = array(
-		'author' => array(
-			'class' => 'user',
-			'other_field' => 'created_post'),
-		'group'
-		);
-    var $created_field = 'created';
-    var $updated_field = 'updated';
+class Post extends CI_Model  {
+	public $title;
+    public $content;
+    var $group;
 	
 	function get_posts($slug = FALSE, $group = 1)
 	{
 		if($slug === FALSE) 
 		{
 			// select only posts with a privacy less than or equal to supplied group
-			$result = $this->where_between_related_group('id',0, $group)->get();
+			//$result = $this->where_between_related_group('id',0, $group)->get();
+			$result = $this->db->get('posts');
 
-			if(!empty($result->all))
+			/*if(!empty($result->all))
 			{
 				foreach($result as $p)
 				{
 					$p->group->get();
 				}
-			}
+			}*/
 		} else
 		{
-			$result = $this->get_where(array('slug' => $slug));
+			$result = $this->db->get_where('posts', array('slug' => $slug));
 
 			if(!empty($result->all))
 			{

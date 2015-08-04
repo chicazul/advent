@@ -70,6 +70,10 @@
 	<h1>Welcome to CodeIgniter!</h1>
 
 	<div id="body">
+		<?php
+		$key = bin2hex($this->encryption->create_key(16));
+		echo $key;
+		?>
 		<p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
 		<p>If you would like to edit this page you'll find it located at:</p>
