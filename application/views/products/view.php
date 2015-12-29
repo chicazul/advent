@@ -60,9 +60,9 @@
 					}
 				echo '</div>'. "\n";
 			} ?>
-			<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" id="view-cart">View Cart</a>
-			<input id="submit-product" type="submit" class="btn btn-primary submit pull-right clearfix" name="Add to Cart" value="Add to Cart" />
-			<!--<div id="alert_nosale" class="alert alert-info" role="alert">Orders are now closed. Please check back soon!</div>-->
+			<!--<a href="https://chicazul.foxycart.com/cart?cart=view" class="btn btn-default pull-right" role="button" id="view-cart">View Cart</a>
+			<input id="submit-product" type="submit" class="btn btn-primary submit pull-right clearfix" name="Add to Cart" value="Add to Cart" />-->
+			<div id="alert_nosale" class="alert alert-info" role="alert">Orders are now closed. Thank you for your interest!</div>
 			
 		</form>
 		

@@ -1,5 +1,6 @@
 <div class="container main-content">
-<div class="row">
+	<div id="alert_nosale" class="alert alert-info" role="alert">Commissions are now closed. Thank you for your interest!</div>
+	<div class="row">
 <?php
 
 $itemsperrow = 4;
